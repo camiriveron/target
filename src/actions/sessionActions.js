@@ -7,7 +7,7 @@ export const login = user =>
   async () => {
     try {
       const response = await sessionApi.login({ user });
-      sessionService.saveUser(response.user);
+      sessionService.saveUser(response.data);
     } catch (err) {
       throw new SubmissionError({
         _error: err.error
