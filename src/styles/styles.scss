@@ -77,17 +77,18 @@ $sky-blue: #2fbcf7;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-  .page-container--full-height {
+  &.page-container--full-height {
     height: 100vh;
   }
 
-  .page-container--shrink {
+  &.page-container--shrink {
     max-width: 400px;
     margin-right: auto;
     margin-left: auto;
   }
+}
+  
 
 .link {
   color: black;
@@ -120,7 +121,6 @@ $sky-blue: #2fbcf7;
   } 
 
 }
-
 
 
 /*------------------------------------*\

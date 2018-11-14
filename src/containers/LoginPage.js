@@ -8,8 +8,8 @@ import LoginForm from 'components/user/LoginForm';
 import { login } from 'actions/sessionActions';
 import routes from 'constants/routesPaths';
 
-import demo from '../resources/images/demo3x.png';
-import SmilesLogo from '../resources/icons/SmilesLogo';
+import demo from 'resources/images/demo3x.png';
+import SmilesLogo from 'resources/icons/SmilesLogo';
 
 class LoginPage extends PureComponent {
   static propTypes = {
