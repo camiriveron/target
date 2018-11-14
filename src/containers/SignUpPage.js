@@ -8,7 +8,7 @@ import { signUp } from 'actions/userActions';
 import SignUpForm from 'components/user/SignUpForm';
 import routes from 'constants/routesPaths';
 
-import demo from '../resources/images/demo3x.png';
+import demo from 'resources/images/demo3x.png';
 
 class SignUpPage extends PureComponent {
   static propTypes = {

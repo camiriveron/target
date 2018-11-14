@@ -171,11 +171,11 @@ $sky-blue: #2fbcf7;
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
 
-.demo__img {
-  display: block;
-  width: auto;
-  height: 100%;
-  object-fit: cover;
+  &__img {
+    display: block;
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
 }

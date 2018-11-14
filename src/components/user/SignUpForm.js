@@ -74,7 +74,7 @@ class SignUpForm extends PureComponent {
             className="select"
           >
             <option>{intl.formatMessage(messages.selectGender)}</option>
-            {gender.map((option, key) => <option key={key} value={option.value}>{option.text}</option>)}
+            {gender.map(({ value, text }, key) => <option key={key} value={value}>{text}</option>)}
           </Field>
         </div>
         <button className="primary-action" type="submit">

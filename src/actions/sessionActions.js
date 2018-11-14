@@ -6,8 +6,8 @@ import sessionApi from 'api/sessionApi';
 export const login = user =>
   async () => {
     try {
-      const response = await sessionApi.login({ user });
-      sessionService.saveUser(response.data);
+      const { data } = await sessionApi.login({ user });
+      sessionService.saveUser(data);
     } catch (err) {
       throw new SubmissionError({
         _error: err.error
