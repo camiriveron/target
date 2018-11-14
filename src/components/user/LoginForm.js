@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { func, string, bool } from 'prop-types';
+import { func, array, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import {
   injectIntl,
@@ -22,7 +22,7 @@ export class LoginForm extends PureComponent {
     handleSubmit: func.isRequired,
     intl: intlShape.isRequired,
     submitting: bool.isRequired,
-    error: string
+    error: array
   }
 
   render() {
