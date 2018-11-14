@@ -48,6 +48,27 @@ $sky-blue: #2fbcf7;
   font-weight: 600;
   text-align: center;
   margin-bottom: 3rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+}
+
+.copy {
+  font-size: .9rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  text-align:justify;
+  letter-spacing: .01rem;
+  line-height: 1.5rem;
+
+  /* Large and up */
+  @media screen and (min-width: 64em) {
+    margin-bottom: 4rem;
+  }
 }
 
 .page-container {
@@ -62,19 +83,45 @@ $sky-blue: #2fbcf7;
     height: 100vh;
   }
 
+  .page-container--shrink {
+    max-width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
 .link {
   color: black;
   text-transform: uppercase;
-  width: 120px;
   text-align: center;
   padding-top: 1rem;
   font-size: .9rem;
+  position: relative;
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    color: $black;
+    border-bottom: 1px solid $black;
+  }
+
+  &.link-separator {
+    padding-top: 1rem;
+
+    &:before {
+      content: '';
+      border-top: 1px solid $black;
+      width: 100px;
+      border-top: 1px solid $black;
+      height: 2px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  } 
+
 }
 
-.link-separator {
-  margin-top: 1rem;
-  border-top: 1px solid $black;
-}
+
 
 /*------------------------------------*\
   # Form
@@ -178,4 +225,14 @@ $sky-blue: #2fbcf7;
     height: 100%;
     object-fit: cover;
   }
+}
+
+/*------------------------------------*\
+  # Error
+\*------------------------------------*/
+
+.error {
+  color: $warning;
+  margin-bottom: 1rem;
+  font-size: .9rem;
 }

@@ -29,8 +29,8 @@ export class LoginForm extends PureComponent {
     const { handleSubmit, error, submitting, intl } = this.props;
 
     return (
-      <form onSubmit={handleSubmit}>
-        {error && <strong>{error}</strong>}
+      <form className="form" onSubmit={handleSubmit}>
+        {error && <span className="error">{error}</span>}
         <div>
           <Field
             name="email"
@@ -47,7 +47,7 @@ export class LoginForm extends PureComponent {
             type="password"
           />
         </div>
-        <button type="submit">
+        <button className="primary-action" type="submit">
           <FormattedMessage id="login.form.submit" />
         </button>
         {submitting && <Loading />}

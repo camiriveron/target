@@ -10,7 +10,7 @@ export const login = user =>
       sessionService.saveUser(data);
     } catch (err) {
       throw new SubmissionError({
-        _error: err.error
+        _error: err.errors
       });
     }
   };
