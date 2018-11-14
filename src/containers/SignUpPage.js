@@ -8,6 +8,8 @@ import { signUp } from 'actions/userActions';
 import SignUpForm from 'components/user/SignUpForm';
 import routes from 'constants/routesPaths';
 
+import demo from 'resources/images/demo3x.png';
+
 class SignUpPage extends PureComponent {
   static propTypes = {
     signUp: func.isRequired,
@@ -22,12 +24,21 @@ class SignUpPage extends PureComponent {
     }
 
     return (
-      <div>
-        <p><FormattedMessage id="signup.title" /></p>
-        <SignUpForm onSubmit={signUp} />
-        <Link to={routes.login}>
-          <FormattedMessage id="signup.signin" />
-        </Link>
+      <div className="grid-x">
+        <div className="cell small-12 medium-6">
+          <div className="page-container page-container--full-height">
+            <h1 className="title"><FormattedMessage id="signup.title" /></h1>
+            <SignUpForm onSubmit={signUp} />
+            <Link className="link link-separator" to={routes.login}>
+              <FormattedMessage id="signup.signin" />
+            </Link>
+          </div>
+        </div>
+        <div className="cell show-for-medium medium-6">
+          <div className="demo">
+            <img className="demo__img" src={demo} alt="Demo video" />
+          </div>
+        </div>
       </div>
     );
   }

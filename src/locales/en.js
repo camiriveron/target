@@ -10,13 +10,18 @@ export default {
 
   'signup.title': 'SIGN UP',
   'signup.signin': 'Sign in',
-  'signup.form.passconfirmation': 'Password confirmation',
+  'signup.form.passconfirmation': 'Confirm Password',
+  'signup.form.gender': 'Gender',
+  'signup.form.selectGender': 'Select Your Gender',
+  'signup.form.name': 'Name',
+  'signup.form.submit': 'Sign Up',
 
   'logout.button': 'LOGOUT',
 
   'home.welcome': 'Welcome to React Redux Base',
 
   // errors
+  'name.presence': 'You must enter a name to continue',
   'email.presence': 'You must enter an email to continue',
   'email.invalid': 'You must enter a valid email',
   'password.presence': 'You must enter a password to continue',

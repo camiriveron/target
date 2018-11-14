@@ -23,10 +23,10 @@ export default class Input extends PureComponent {
     } = this.props;
 
     return (
-      <div>
-        {label && <label>{label}</label>}
-        <div>
-          <input {...input} {...{ placeholder, type }} />
+      <div className="input-container">
+        {label && <label className="input-label">{label}</label>}
+        <div className="input-validation">
+          <input className="input" {...input} {...{ placeholder, type }} />
           {touched && error &&
             <span>
               <FormattedMessage

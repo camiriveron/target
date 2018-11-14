@@ -11,6 +11,9 @@ export const login = {
 };
 
 export const signUp = {
+  username: {
+    presence: { message: 'name.presence' },
+  },
   email: {
     presence: { message: 'email.presence' },
     email: { message: 'email.invalid' }
@@ -21,7 +24,7 @@ export const signUp = {
   passwordConfirmation: {
     presence: { message: 'passwordConfirmation.presence' },
     equality: { attribute: 'password', message: 'passwordConfirmation.equality' }
-  }
+  },
 };
 
 export const validations = (constraints, props = {}) =>
