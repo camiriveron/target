@@ -8,6 +8,9 @@ import LoginForm from 'components/user/LoginForm';
 import { login } from 'actions/sessionActions';
 import routes from 'constants/routesPaths';
 
+import demo from 'resources/images/demo3x.png';
+import SmilesLogo from 'resources/icons/SmilesLogo';
+
 class LoginPage extends PureComponent {
   static propTypes = {
     login: func.isRequired,
@@ -22,12 +25,24 @@ class LoginPage extends PureComponent {
     }
 
     return (
-      <div>
-        <p><FormattedMessage id="login.title" /></p>
-        <LoginForm onSubmit={login} />
-        <Link to={routes.signUp}>
-          <FormattedMessage id="login.signup" />
-        </Link>
+      <div className="grid-x">
+        <div className="cell small-12 medium-6">
+          <div className="page-container page-container--full-height page-container--shrink">
+            <SmilesLogo />
+            <h1 className="title"><FormattedMessage id="login.title" /></h1>
+            <h2 className="subtitle"><FormattedMessage id="login.subtitle" /></h2>
+            <h3 className="copy"><FormattedMessage id="login.copy" /></h3>            
+            <LoginForm onSubmit={login} />
+            <Link className="link link-separator" to={routes.signUp}>
+              <FormattedMessage id="login.signup" />
+            </Link>
+          </div>
+        </div>
+        <div className="cell show-for-medium medium-6">
+          <div className="demo">
+            <img className="demo__img" src={demo} alt="Demo video" />
+          </div>
+        </div>
       </div>
     );
   }

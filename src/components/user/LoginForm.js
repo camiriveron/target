@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { func, string, bool } from 'prop-types';
+import { func, array, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import {
   injectIntl,
@@ -22,15 +22,15 @@ export class LoginForm extends PureComponent {
     handleSubmit: func.isRequired,
     intl: intlShape.isRequired,
     submitting: bool.isRequired,
-    error: string
+    error: array
   }
 
   render() {
     const { handleSubmit, error, submitting, intl } = this.props;
 
     return (
-      <form onSubmit={handleSubmit}>
-        {error && <strong>{error}</strong>}
+      <form className="form" onSubmit={handleSubmit}>
+        {error && <span className="error">{error}</span>}
         <div>
           <Field
             name="email"
@@ -47,7 +47,7 @@ export class LoginForm extends PureComponent {
             type="password"
           />
         </div>
-        <button type="submit">
+        <button className="primary-action" type="submit">
           <FormattedMessage id="login.form.submit" />
         </button>
         {submitting && <Loading />}

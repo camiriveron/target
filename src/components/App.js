@@ -21,7 +21,7 @@ class App extends PureComponent {
     return (
       <Fragment>
         <Helmet>
-          <title>RS React Redux Base</title>
+          <title>Target</title>
         </Helmet>
         <ConnectedRouter history={history}>
           {checked &&

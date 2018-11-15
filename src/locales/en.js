@@ -1,10 +1,13 @@
 export default {
-  'login.title': 'LOGIN',
+  'login.title': 'Target MVD',
   'login.signup': 'Sign up',
+  'login.subtitle': 'Find people near you & Connect',
+  'login.copy': 'Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.',
+
 
   'login.form.email': 'Email',
   'login.form.password': 'Password',
-  'login.form.submit': 'Submit',
+  'login.form.submit': 'Sign In ',
 
   'login.forgot_password': 'Forgot your password?',
 
