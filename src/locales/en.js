@@ -2,7 +2,7 @@ export default {
   'login.title': 'Target MVD',
   'login.signup': 'Sign up',
   'login.subtitle': 'Find people near you & Connect',
-  'login.copy': 'Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.',
+  'login.copy': 'Create a target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.',
 
   'login.form.email': 'Email',
   'login.form.password': 'Password',
@@ -22,7 +22,7 @@ export default {
 
   'home.welcome': 'Welcome to TARGET',
   'home.subtitle': 'Find people near you & Connect',
-  'home.welcome.list1': 'Create a  target  by clicking wherever on the map, specify  the ratio and and a topic: Travel, Dating, Music, etc.',
+  'home.welcome.list1': 'Create a target by clicking wherever on the map, specify  the ratio and and a topic: Travel, Dating, Music, etc.',
   'home.welcome.list2': 'TARGET will  start a chat whenever you’ve a match. \nYou can always dismiss a conversation if you’re not interested.',
   'home.welcome.gotit': 'OK; GOT IT!',
 
