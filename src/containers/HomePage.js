@@ -10,11 +10,11 @@ import { GOOGLE_MAPS_URL } from 'constants/constants';
 
 const HomePage = ({ signedUp }) =>
   <div className="grid-x">
-    <div className="cell small-12 medium-3">     
+    <div className="cell small-12 medium-3 show-for-medium " >
       {signedUp && <Welcome />}
       {!signedUp && <HomeSideBar />}
     </div>
-    <div className="cell show-for-medium medium-9">
+    <div className="cell medium-9">
       <Map
         googleMapURL={GOOGLE_MAPS_URL}
         loadingElement={<div className="loading-map" />}

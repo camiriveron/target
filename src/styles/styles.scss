@@ -309,10 +309,24 @@ svg.logo--small {
 
 .map-container {
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .map {
   height: 100%;
+
+  &:after {
+    position: absolute;
+    display: block;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    content: '';
+    z-index: 5;
+    left: -5px;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+  }
 }
 
 /*------------------------------------*\

@@ -4,7 +4,6 @@ export default {
   'login.subtitle': 'Find people near you & Connect',
   'login.copy': 'Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.',
 
-
   'login.form.email': 'Email',
   'login.form.password': 'Password',
   'login.form.submit': 'Sign In',
