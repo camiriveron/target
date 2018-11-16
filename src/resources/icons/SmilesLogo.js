@@ -1,12 +1,14 @@
 import React from 'react';
+import { string } from 'prop-types';
 
-const SmilesLogo = () => (
+const SmilesLogo = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     width="133"
     height="78"
     viewBox="0 0 133 78"
+    className={className}
   >
     <defs>
       <path id="a" d="M12.853 24.866H0V0h25.706v24.866H12.853z" />
@@ -43,5 +45,9 @@ const SmilesLogo = () => (
     </g>
   </svg>
 );
+
+SmilesLogo.propTypes = {
+  className: string,
+};
 
 export default SmilesLogo;

@@ -1,13 +1,35 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { bool } from 'prop-types';
+import { connect } from 'react-redux';
 
-import LogoutButton from 'components/user/LogoutButton';
+import Map from 'components/map/Map';
+import Welcome from 'components/home/Welcome';
+import HomeSideBar from 'components/home/HomeSideBar';
 
-const HomePage = () => (
-  <div>
-    <p><FormattedMessage id="home.welcome" /></p>
-    <LogoutButton />
-  </div>
-);
+import { GOOGLE_MAPS_URL } from 'constants/constants';
 
-export default HomePage;
+const HomePage = ({ signedUp }) =>
+  <div className="grid-x">
+    <div className="cell small-12 medium-3">     
+      {signedUp && <Welcome />}
+      {!signedUp && <HomeSideBar />}
+    </div>
+    <div className="cell show-for-medium medium-9">
+      <Map
+        googleMapURL={GOOGLE_MAPS_URL}
+        loadingElement={<div className="loading-map" />}
+        containerElement={<div className="map-container" />}
+        mapElement={<div className="map" />}
+      />
+    </div>
+  </div>;
+
+HomePage.propTypes = {
+  signedUp: bool,
+};
+
+const mapStateToProps = state => ({
+  signedUp: state.getIn(['signup', 'signedUp'])
+});
+
+export default connect(mapStateToProps)(HomePage);
