@@ -11,8 +11,7 @@ import { GOOGLE_MAPS_URL } from 'constants/constants';
 const HomePage = ({ signedUp }) =>
   <div className="grid-x">
     <div className="cell small-12 medium-3 show-for-medium " >
-      {signedUp && <Welcome />}
-      {!signedUp && <HomeSideBar />}
+      {signedUp ? <Welcome /> : <HomeSideBar />}
     </div>
     <div className="cell medium-9">
       <Map
