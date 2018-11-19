@@ -31,7 +31,7 @@ class LoginPage extends PureComponent {
             <SmilesLogo />
             <h1 className="title"><FormattedMessage id="login.title" /></h1>
             <h2 className="subtitle"><FormattedMessage id="login.subtitle" /></h2>
-            <h3 className="copy"><FormattedMessage id="login.copy" /></h3>            
+            <h3 className="copy"><FormattedMessage id="login.copy" /></h3>
             <LoginForm onSubmit={login} />
             <Link className="link link-separator" to={routes.signUp}>
               <FormattedMessage id="login.signup" />

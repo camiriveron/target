@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { logout } from 'actions/sessionActions';
 
 const LogoutButton = ({ logout }) => (
-  <button onClick={logout}>
+  <button className="link link--secondary" onClick={logout}>
     <FormattedMessage id="logout.button" />
   </button>
 );
