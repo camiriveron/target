@@ -12,6 +12,7 @@ import {
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
+import Select from 'components/common/Select';
 import { validations, createTarget } from 'utils/constraints';
 import { updateRadius, getTopics } from 'actions/targetActions';
 
@@ -69,14 +70,11 @@ export class TargetForm extends PureComponent {
         <Field
           name="topic_id"
           label={intl.formatMessage(messages.topic)}
-          component="select"
-          className="select"
-          type="number"
+          placeholder={intl.formatMessage(messages.selectTopic)}
+          component={Select}
           normalize={toInt}
-        >
-          <option>{intl.formatMessage(messages.selectTopic)}</option>
-          {topics && topics.map(({ topic: { id, label } }, key) => <option key={key} value={id}>{label}</option>)}
-        </Field>
+          options={topics && topics.map(topic => topic.topic)}
+        />
         <button className="primary-action" type="submit">
           <FormattedMessage id="target.form.submit" />
         </button>

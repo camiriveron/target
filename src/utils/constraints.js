@@ -32,10 +32,19 @@ export const createTarget = {
     presence: { message: 'target.title.presence' },
   },
   radius: {
-    presence: { message: 'target.radius.presence' },
+    presence: { allowEmpty: false, message: 'target.radius.presence' },
+    numericality: {
+      onlyInteger: true,
+      greaterThan: 0,
+      lessThanOrEqualTo: 500
+    }
   },
   topic_id: {
-    presence: { message: 'target.topic.presence' },
+    presence: { allowEmpty: false, message: 'target.topic.presence' },
+    numericality: {
+      onlyInteger: true,
+      greaterThan: 0
+    }
   }
 };
 

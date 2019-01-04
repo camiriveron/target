@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { bool, func, number, array } from 'prop-types';
+import { bool, func, number, array, object } from 'prop-types';
 
 import {
   withScriptjs,
@@ -25,6 +25,7 @@ class Map extends Component {
 
   onMapClick({ latLng }) {
     const { addingNewTarget, startNewTarget, endNewTarget } = this.props;
+
     if (!addingNewTarget) {
       startNewTarget({
         lat: latLng.lat(),
@@ -107,7 +108,7 @@ Map.propTypes = {
   targetRadius: number.isRequired,
   newTargetLat: number,
   newTargetLong: number,
-  targets: array,
+  targets: object,
   topics: array,
   endNewTarget: func.isRequired,
 };
