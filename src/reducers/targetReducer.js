@@ -10,7 +10,8 @@ const targetReducer = (state = mapInitialState, action) => {
     }
     case types.END_NEW_TARGET: {
       return state.set('addingNewTarget', false)
-        .set('targetRadius', mapInitialState.get('targetRadius'));
+        .set('targetRadius', mapInitialState.get('targetRadius'))
+        .set('targetErrors', {});
     }
     case types.UPDATE_RADIUS: {
       return state.set('targetRadius', action.payload);
@@ -31,7 +32,7 @@ const targetReducer = (state = mapInitialState, action) => {
       return state.set('topics', action.payload.topics);
     }
     case types.GET_TOPICS_ERROR: {
-      return;
+      return state.set('otherErrors', action.payload.errors);
     }
     default:
       return state;

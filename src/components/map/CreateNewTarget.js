@@ -24,7 +24,7 @@ const CreateNewTarget = (props) => {
         <div>
           <div className="center show-for-medium">
             <Target />
-            <h1 className="input-label mb3">
+            <h1 className="input-label mb2">
               <FormattedMessage id="target.create.title" />
             </h1>
           </div>

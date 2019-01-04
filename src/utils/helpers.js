@@ -14,6 +14,23 @@ export const parseInputErrors = (error) => {
   return error;
 };
 
+export const parseApiErrors = (error) => {
+  if (!error) {
+    return;
+  }
+
+  if (typeof error === 'object') {
+    error = Object.values(error);
+  }
+
+  if (Iterable.isIterable(error)) {
+    return error.first();
+  } else if (Array.isArray(error)) {
+    return error[0];
+  }
+  return error;
+};
+
 export const applyQueryParams = (url, params = {}) => {
   if (isEmpty(params)) {
     return url;

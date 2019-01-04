@@ -193,7 +193,7 @@ $dark-gray: rgba(0, 0, 0, .7);
 
   .home__menu {
     height: 22rem;
-    margin: 2rem 0 0 0;    
+    margin: 2.5rem 0 0 0;
     order: 2;
   }
 
@@ -234,6 +234,7 @@ svg.logo--small {
 .form {
   @include flex-center;
   max-width: 400px;
+  position: relative;
   width: 300px;
 
   &.form--shrink {
@@ -281,10 +282,18 @@ svg.logo--small {
   font-size: .7rem;
   margin-bottom: 1rem;
   max-width: 100%;
+  position: relative;
   text-transform: uppercase;
   white-space: nowrap;
   width: 100%;
   @include flex-center;
+
+  span {
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
 }
 
 /*------------------------------------*\
@@ -345,7 +354,9 @@ svg.logo--small {
   color: $warning;
   font-size: .8rem;
   margin-bottom: 1rem;
+  position: absolute;
   text-transform: uppercase;
+  top: -1.8rem;
 }
 
 /*------------------------------------*\
