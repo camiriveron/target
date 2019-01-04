@@ -32,7 +32,7 @@ const targetReducer = (state = mapInitialState, action) => {
       return state.set('topics', action.payload.topics);
     }
     case types.GET_TOPICS_ERROR: {
-      return state.set('otherErrors', action.payload.errors);
+      return state.set('targetErrors', action.payload.errors);
     }
     default:
       return state;
