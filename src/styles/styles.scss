@@ -38,7 +38,18 @@ $warning: #db4c4c;
 $black: #000000;
 $white: #ffffff;
 $sky-blue: #2fbcf7;
-$dark-gray: rgba(0, 0, 0, 0.7);
+$dark-gray: rgba(0, 0, 0, .7);
+
+/*------------------------------------*\
+  # Mixins
+\*------------------------------------*/
+
+@mixin flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 /*------------------------------------*\
   # Common
@@ -59,13 +70,13 @@ $dark-gray: rgba(0, 0, 0, 0.7);
 }
 
 .copy {
-  font-size: 0.9rem;
+  font-size: .9rem;
   text-align: center;
   margin-bottom: 1rem;
   font-weight: normal;
   text-align: justify;
-  letter-spacing: 0.01rem;
-  line-height: 1.5rem;
+  letter-spacing: .01rem;
+  line-height: 1.5;
 
   /* Large and up */
   @media screen and (min-width: 64em) {
@@ -79,15 +90,9 @@ $dark-gray: rgba(0, 0, 0, 0.7);
 
 .page-container {
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   padding: 2rem;
-
-  &.page-container--full-height {
-    height: 100vh;
-  }
+  background: $white;
 
   &.page-container--shrink {
     max-width: 360px;
@@ -102,6 +107,12 @@ $dark-gray: rgba(0, 0, 0, 0.7);
       padding: 5rem 2rem;
     }
   }
+
+  &.page-container--full-height {
+    @media screen and (min-width: 64em) {    
+      height: 100vh;
+    }
+  }
 }
 
 .link {
@@ -109,7 +120,7 @@ $dark-gray: rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
   text-align: center;
   padding-top: 1rem;
-  font-size: 0.9rem;
+  font-size: .9rem;
   position: relative;
   border-bottom: 1px solid transparent;
   cursor: pointer;
@@ -122,7 +133,7 @@ $dark-gray: rgba(0, 0, 0, 0.7);
   &.link--secondary {
     text-transform: none;
     color: $dark-gray;
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-weight: 600;
     letter-spacing: 1.8px;
 
@@ -158,22 +169,53 @@ $dark-gray: rgba(0, 0, 0, 0.7);
 }
 
 .container--centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   height: 100%;
 }
 
 .footer {
   height: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 
   @media screen and (min-width: 64em) {
     height: 200px;
+  }
+}
+
+/*------------------------------------*\
+  # Home
+\*------------------------------------*/
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .home__menu {    
+    order: 2;
+    margin: 2rem 0 0 0;
+    height: 22rem;
+  }
+
+  .home__map {
+    flex-grow: 1;
+    order: 1;
+    position: relative;
+  }
+
+  @media screen and (min-width: 64em) {
+    flex-direction: row;
+
+    .home__menu {
+      flex-grow: 1;
+      margin: 0;
+      order: 1;
+    }
+  
+    .home__map {
+      flex-grow: 10;
+      order: 2;
+    }
   }
 }
 
@@ -190,10 +232,14 @@ svg.logo--small {
 \*------------------------------------*/
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
+  max-width: 400px;
+  width: 300px;
+
+  &.form--shrink {
+    max-width: 200px;
+    width: 200px;
+  }
 }
 
 /*------------------------------------*\
@@ -202,24 +248,28 @@ svg.logo--small {
 
 .input-container {
   text-align: center;
-  padding-left: 20%;
-  padding-right: 20%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  @include flex-center;
 }
 
 .input {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  width: 200px;
-  max-width: 200px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  width: 100%;
+  max-width: 100%;
+  font-size: .8rem;
+
+  &[type=number] {
+    text-align: center;
+  }  
 }
 
 .input-label {
-  width: 200px;
-  font-size: 0.9rem;
+  width: 100%;
+  max-width: 100%;
+  font-size: .9rem;
   font-weight: 600;
+  padding-bottom: .3rem;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
@@ -227,16 +277,14 @@ svg.logo--small {
 }
 
 .input-validation {
-  max-width: 200px;
+  width: 100%;
+  max-width: 100%;
   color: $warning;
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: .7rem;
   margin-bottom: 1rem;
   white-space: nowrap;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 /*------------------------------------*\
@@ -245,11 +293,11 @@ svg.logo--small {
 
 .select {
   border: 1px solid $black;
-  width: 200px;
-  max-width: 200px;
+  width: 100%;
+  max-width: 100%;
   margin-bottom: 2rem;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
 
 /*------------------------------------*\
@@ -257,9 +305,9 @@ svg.logo--small {
 \*------------------------------------*/
 
 .primary-action {
-  font-size: 0.9rem;
+  font-size: .9rem;
   background-color: $black;
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   min-width: 200px;
   min-height: 39px;
   color: $white;
@@ -296,7 +344,8 @@ svg.logo--small {
 .error {
   color: $warning;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
+  font-size: .8rem;
+  text-transform: uppercase;
 }
 
 /*------------------------------------*\
@@ -308,9 +357,13 @@ svg.logo--small {
 }
 
 .map-container {
-  height: 100vh;
-  position: relative;
+  position: absolute;
   overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .map {
@@ -319,7 +372,7 @@ svg.logo--small {
   &:after {
     position: absolute;
     display: block;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
     content: '';
     z-index: 5;
     left: -5px;
@@ -334,10 +387,7 @@ svg.logo--small {
 \*------------------------------------*/
 
 .list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 .list-item {
@@ -351,10 +401,10 @@ svg.logo--small {
   &.list-item--bullet:before {
     content: "";
     position: absolute;
-    left: -0.4rem;
-    top: 0.4rem;
-    width: 0.8rem;
-    height: 0.8rem;
+    left: -.4rem;
+    top: .4rem;
+    width: .8rem;
+    height: .8rem;
     background: $sky-blue;
     border-radius: 50%;
   }
@@ -369,19 +419,54 @@ svg.logo--small {
   height: 150px;
   background: $sky-blue;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   margin-bottom: 1rem;
 }
 
 .userMenu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
+}
+
+/*------------------------------------*\
+  # Overlap Menu
+\*------------------------------------*/
+
+.overlap-menu {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0;  
+}
+
+.menu-header {
+  @include flex-center;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  background: $sky-blue;
+  height: 5rem;
+  margin-bottom: 1rem;
+
+  &__title {
+    text-transform: uppercase;
+    color: $white;
+    font-size: 1.5rem;
+  }
+}
+
+.back-arrow {
+  position: absolute;
+  left: 2rem;
+  color: $white;
+  font-size: 2rem;
+
+  &:hover {
+    color: $white;
+  }
 }
 
 /*------------------------------------*\
@@ -409,5 +494,10 @@ svg.logo--small {
 }
 
 .center {
-  text-align: center;
+  @include flex-center;
+  text-align: center;  
+}
+
+.relative {
+  position: relative;
 }

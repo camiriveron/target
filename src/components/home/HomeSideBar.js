@@ -7,7 +7,7 @@ import SmilesLogo from 'resources/icons/SmilesLogo';
 import UserMenu from 'components/user/UserMenu';
 
 const HomeSideBar = ({ username }) => (
-  <div className="page-container page-container--full-height page-container--shrink" >
+  <div className="page-container page-container--full-height page-container--shrink show-for-medium" >
     <div className="container--spaced">
       <div className="container--spaced">
         <div>

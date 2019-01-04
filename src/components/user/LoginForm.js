@@ -29,24 +29,20 @@ export class LoginForm extends PureComponent {
     const { handleSubmit, error, submitting, intl } = this.props;
 
     return (
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form form--shrink" onSubmit={handleSubmit}>
         {error && <span className="error">{error}</span>}
-        <div>
-          <Field
-            name="email"
-            label={intl.formatMessage(messages.email)}
-            component={Input}
-            type="email"
-          />
-        </div>
-        <div>
-          <Field
-            name="password"
-            label={intl.formatMessage(messages.password)}
-            component={Input}
-            type="password"
-          />
-        </div>
+        <Field
+          name="email"
+          label={intl.formatMessage(messages.email)}
+          component={Input}
+          type="email"
+        />
+        <Field
+          name="password"
+          label={intl.formatMessage(messages.password)}
+          component={Input}
+          type="password"
+        />
         <button className="primary-action" type="submit">
           <FormattedMessage id="login.form.submit" />
         </button>
