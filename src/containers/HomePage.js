@@ -15,9 +15,10 @@ const HomePage = ({ signedUp, addingNewTarget }) =>
       {signedUp ? <Welcome /> : <HomeSideBar />}
       {addingNewTarget && <CreateNewTarget /> }
     </div>
-    {addingNewTarget && <div className="relative home__menu show-for-small-only" >
-       <CreateNewTarget /> 
-    </div>}   
+    {addingNewTarget &&
+    <div className="relative home__menu show-for-small-only" >
+      <CreateNewTarget />
+    </div>}
     <div className="home__map">
       <Map
         googleMapURL={GOOGLE_MAPS_URL}

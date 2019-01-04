@@ -43,6 +43,8 @@ class Map extends Component {
   }
 
   render() {
+    const { addingNewTarget, targetRadius, newTargetLat, newTargetLong, targets } = this.props;
+
     const defaultZoom = 15;
     const mapOptions = {
       streetViewControl: false,
@@ -54,8 +56,15 @@ class Map extends Component {
       fullscreenControl: false,
       clickableIcons: false
     };
-
-    const { addingNewTarget, targetRadius, newTargetLat, newTargetLong, targets } = this.props;
+    const addingTargetCircleOptions = {
+      strokeColor: '#efc638',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FFFFFF',
+      fillOpacity: 0.7,
+      center: { lat: newTargetLat, lng: newTargetLong },
+      radius: targetRadius
+    };
 
     return (
       <GoogleMap
@@ -65,17 +74,7 @@ class Map extends Component {
         defaultOptions={mapOptions}
       >
         {addingNewTarget && <Marker icon={{ url: targetIcon }} position={{ lat: newTargetLat, lng: newTargetLong }} />}
-        {addingNewTarget &&
-          <Circle options={{
-            strokeColor: '#efc638',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FFFFFF',
-            fillOpacity: 0.7,
-            center: { lat: newTargetLat, lng: newTargetLong },
-            radius: targetRadius
-          }}
-          />}
+        {addingNewTarget && <Circle options={addingTargetCircleOptions} />}
         {targets && targets.map(({ id, radius, lat, lng, topicId }) =>
           <Fragment key={`fragment${id}`}>
             <Marker

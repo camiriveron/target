@@ -48,7 +48,7 @@ CreateNewTarget.propTypes = {
 
 const mapStateToProps = state => ({
   newTargetLat: state.getIn(['target', 'newTargetLat']),
-  newTargetLong: state.getIn(['target', 'newTargetLong'])  
+  newTargetLong: state.getIn(['target', 'newTargetLong'])
 });
 
 const mapDispatch = dispatch => ({
