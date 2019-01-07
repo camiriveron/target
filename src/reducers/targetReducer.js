@@ -23,7 +23,7 @@ const targetReducer = (state = mapInitialState, action) => {
       return state.set('topics', action.topics);
     }
     case types.GET_TARGETS_SUCCESS: {
-      return state.set('targets', List(action.payload.targets.map(({ target }) => target)));
+      return state.set('targets', List(action.targets.map(({ target }) => target)));
     }
     case types.GET_TARGETS_ERROR: {
       return state.set('targetErrors', action.payload.errors);

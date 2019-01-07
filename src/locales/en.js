@@ -31,6 +31,7 @@ export default {
   'home.sidebar.target1': 'Football',
   'home.sidebar.target2': 'Travel',
   'home.sidebar.target3': 'Music',
+  'home.sidebar.noMatches': 'There are not matches for your targets yet.',
 
   'target.create.title': 'Create New Target',
   'target.form.radius': 'Specify Area Length',

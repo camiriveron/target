@@ -26,7 +26,7 @@ class Map extends Component {
   state = { center: { lat: -34.91, lng: -56.163195 } };
 
   componentDidMount() {
-    const { topics, targets, getTargets, getTopics} = this.props;
+    const { topics, targets, getTargets, getTopics } = this.props;
 
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
