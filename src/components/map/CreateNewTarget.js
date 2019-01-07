@@ -1,20 +1,20 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { func, number } from 'prop-types';
+import { func, object } from 'prop-types';
 
 import SmilesLogo from 'resources/icons/SmilesLogo';
-import Target from 'resources/icons/Target';
+import TargetIcon from 'resources/icons/TargetIcon';
 
 import { createTarget, endNewTarget } from 'actions/targetActions';
 import TargetForm from 'components/target/TargetForm';
 import MenuHeader from 'components/common/MenuHeader';
 
 const CreateNewTarget = (props) => {
-  const { endNewTarget, newTargetLat, newTargetLong, createTarget } = props;
+  const { endNewTarget, newTarget: { lat, lng }, createTarget } = props;
 
   const submitCreateTarget = (target) => {
-    createTarget({ ...target.toJS(), lat: newTargetLat, lng: newTargetLong });
+    createTarget({ ...target.toJS(), lat, lng });
   };
 
   return (
@@ -23,7 +23,7 @@ const CreateNewTarget = (props) => {
       <div className="container--spaced">
         <div>
           <div className="center show-for-medium">
-            <Target />
+            <TargetIcon />
             <h1 className="input-label mb2">
               <FormattedMessage id="target.create.title" />
             </h1>
@@ -32,7 +32,6 @@ const CreateNewTarget = (props) => {
         </div>
         <div className="footer show-for-medium">
           <SmilesLogo className="logo--small" />
-          <div />
         </div>
       </div>
     </div>
@@ -41,14 +40,12 @@ const CreateNewTarget = (props) => {
 
 CreateNewTarget.propTypes = {
   endNewTarget: func.isRequired,
-  newTargetLat: number.isRequired,
-  newTargetLong: number.isRequired,
+  newTarget: object.isRequired,
   createTarget: func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  newTargetLat: state.getIn(['target', 'newTargetLat']),
-  newTargetLong: state.getIn(['target', 'newTargetLong'])
+  newTarget: state.getIn(['target', 'newTarget'])
 });
 
 const mapDispatch = dispatch => ({

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bool, func, number, array, object } from 'prop-types';
+import { formValueSelector } from 'redux-form/immutable';
 
 import {
   withScriptjs,
@@ -8,11 +9,11 @@ import {
   GoogleMap,
   Marker,
   Circle
-}
-  from 'react-google-maps';
+} from 'react-google-maps';
 
 import { startNewTarget, endNewTarget } from 'actions/targetActions';
 import targetIcon from 'resources/icons/target.png';
+import Target from 'components/target/Target';
 
 class Map extends Component {
   constructor() {
@@ -37,14 +38,8 @@ class Map extends Component {
     }
   }
 
-  getTopicIcon(topicId) {
-    const { topics } = this.props;
-    const topic = topics.find(topic => topic.topic.id == topicId);
-    return topic ? topic.topic.icon : '';
-  }
-
   render() {
-    const { addingNewTarget, targetRadius, newTargetLat, newTargetLong, targets } = this.props;
+    const { addingNewTarget, targetRadius, newTarget: { lat, lng }, targets, topics } = this.props;
 
     const defaultZoom = 15;
     const mapOptions = {
@@ -61,9 +56,9 @@ class Map extends Component {
       strokeColor: '#efc638',
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: '#FFFFFF',
+      fillColor: '#fff',
       fillOpacity: 0.7,
-      center: { lat: newTargetLat, lng: newTargetLong },
+      center: { lat, lng },
       radius: targetRadius
     };
 
@@ -74,29 +69,12 @@ class Map extends Component {
         onClick={this.onMapClick}
         defaultOptions={mapOptions}
       >
-        {addingNewTarget && <Marker icon={{ url: targetIcon }} position={{ lat: newTargetLat, lng: newTargetLong }} />}
-        {addingNewTarget && <Circle options={addingTargetCircleOptions} />}
-        {targets && targets.map(({ id, radius, lat, lng, topicId }) =>
-          <Fragment key={`fragment${id}`}>
-            <Marker
-              key={`marker${id}`}
-              icon={{ url: this.getTopicIcon(topicId), anchor: { x: 15, y: 15 }, scaledSize: { width: 30, height: 30 } }}
-              position={{ lat, lng }}
-            />
-            <Circle
-              key={`circle${id}`}
-              options={{
-                strokeColor: '#efc638',
-                strokeOpacity: 0.8,
-                strokeWeight: 5,
-                fillColor: '#ffffff',
-                fillOpacity: 0.8,
-                center: { lat, lng },
-                radius
-              }}
-            />
-          </Fragment>)
-        }
+        {addingNewTarget &&
+          <Fragment>
+            <Marker icon={{ url: targetIcon }} position={{ lat, lng }} />
+            <Circle options={addingTargetCircleOptions} />
+          </Fragment>}
+        {targets && targets.map((target, key) => <Target target={target} key={key} topics={topics} />)}
       </GoogleMap>
     );
   }
@@ -105,19 +83,19 @@ class Map extends Component {
 Map.propTypes = {
   addingNewTarget: bool,
   startNewTarget: func.isRequired,
-  targetRadius: number.isRequired,
-  newTargetLat: number,
-  newTargetLong: number,
+  targetRadius: number,
+  newTarget: object,
   targets: object,
   topics: array,
   endNewTarget: func.isRequired,
 };
 
+const formSelector = formValueSelector('create-target');
+
 const mapState = state => ({
   addingNewTarget: state.getIn(['target', 'addingNewTarget']),
-  targetRadius: state.getIn(['target', 'targetRadius']),
-  newTargetLat: state.getIn(['target', 'newTargetLat']),
-  newTargetLong: state.getIn(['target', 'newTargetLong']),
+  targetRadius: formSelector(state, 'radius'),
+  newTarget: state.getIn(['target', 'newTarget']),
   targets: state.getIn(['target', 'targets']),
   topics: state.getIn(['target', 'topics'])
 });

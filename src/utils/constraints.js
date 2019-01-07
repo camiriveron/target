@@ -39,11 +39,12 @@ export const createTarget = {
       lessThanOrEqualTo: 500
     }
   },
-  topic_id: {
+  topicId: {
     presence: { allowEmpty: false, message: 'target.topic.presence' },
     numericality: {
       onlyInteger: true,
-      greaterThan: 0
+      greaterThan: 0,
+      message: 'target.topic.presence'
     }
   }
 };

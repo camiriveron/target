@@ -1,50 +1,40 @@
 import targetApi from 'api/targetApi';
 import * as types from './actionTypes';
 
-export const startNewTarget = latlng => ({
+export const startNewTarget = newTarget => ({
   type: types.START_NEW_TARGET,
-  payload: latlng
+  newTarget
 });
 
 export const endNewTarget = () => ({
   type: types.END_NEW_TARGET,
 });
 
-export const createTargetSuccess = newTarget => ({
+export const createTargetSuccess = target => ({
   type: types.CREATE_TARGET_SUCCESS,
-  payload: newTarget
-});
-
-export const createTargetError = error => ({
-  type: types.CREATE_TARGET_ERROR,
-  payload: error
+  target
 });
 
 export const getTopicsSuccess = topics => ({
   type: types.GET_TOPICS_SUCCESS,
-  payload: topics
+  topics
 });
 
-export const getTopicsError = error => ({
-  type: types.GET_TOPICS_ERROR,
-  payload: error
-});
-
-export const updateRadius = radius => ({
-  type: types.UPDATE_RADIUS,
-  payload: radius
+export const apiError = errors => ({
+  type: types.API_ERROR,
+  errors
 });
 
 export const createTarget = target => dispatch =>
-  targetApi.createTarget(target).then((newTarget) => {
-    dispatch(createTargetSuccess(newTarget));
-  }).catch((error) => {
-    dispatch(createTargetError(error));
+  targetApi.createTarget(target).then(({ target }) => {
+    dispatch(createTargetSuccess(target));
+  }).catch(({ errors }) => {
+    dispatch(apiError(errors));
   });
 
 export const getTopics = () => dispatch =>
-  targetApi.getTopics().then((topics) => {
+  targetApi.getTopics().then(({ topics }) => {
     dispatch(getTopicsSuccess(topics));
-  }).catch((error) => {
-    dispatch(getTopicsError(error));
+  }).catch(({ errors }) => {
+    dispatch(apiError(errors));
   });

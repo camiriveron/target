@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Target = () => (
+const TargetIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
@@ -31,4 +31,4 @@ const Target = () => (
   </svg>
 );
 
-export default Target;
+export default TargetIcon;

@@ -14,7 +14,7 @@ import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
 import Select from 'components/common/Select';
 import { validations, createTarget } from 'utils/constraints';
-import { updateRadius, getTopics } from 'actions/targetActions';
+import { getTopics } from 'actions/targetActions';
 import { parseApiErrors } from 'utils/helpers';
 
 const messages = defineMessages({
@@ -31,7 +31,6 @@ export class TargetForm extends PureComponent {
     intl: intlShape.isRequired,
     submitting: bool.isRequired,
     error: array,
-    updateRadius: func.isRequired,
     topics: array,
     getTopics: func.isRequired,
     errors: object
@@ -46,7 +45,7 @@ export class TargetForm extends PureComponent {
   }
 
   render() {
-    const { handleSubmit, error, submitting, intl, updateRadius, topics, errors } = this.props;
+    const { handleSubmit, error, submitting, intl, topics, errors } = this.props;
     const toInt = value => (value === undefined ? undefined : parseInt(value, 10));
 
     return (
@@ -58,7 +57,6 @@ export class TargetForm extends PureComponent {
           label={intl.formatMessage(messages.radius)}
           component={Input}
           type="number"
-          onChange={(event) => { updateRadius(event.target.valueAsNumber); }}
           normalize={toInt}
         />
         <Field
@@ -69,7 +67,7 @@ export class TargetForm extends PureComponent {
           placeholder={intl.formatMessage(messages.titlePlaceholder)}
         />
         <Field
-          name="topic_id"
+          name="topicId"
           label={intl.formatMessage(messages.topic)}
           placeholder={intl.formatMessage(messages.selectTopic)}
           component={Select}
@@ -92,7 +90,6 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  updateRadius: radius => dispatch(updateRadius(radius)),
   getTopics: () => dispatch(getTopics())
 });
 
