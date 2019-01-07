@@ -17,6 +17,16 @@ export const createTargetSuccess = target => ({
   target
 });
 
+export const getTargetsSuccess = targets => ({
+  type: types.GET_TARGETS_SUCCESS,
+  payload: targets
+});
+
+export const getTargetsError = error => ({
+  type: types.GET_TARGETS_ERROR,
+  payload: error
+});
+
 export const getTopicsSuccess = topics => ({
   type: types.GET_TOPICS_SUCCESS,
   topics
@@ -39,4 +49,11 @@ export const getTopics = () => dispatch =>
     dispatch(getTopicsSuccess(topics));
   }).catch(({ errors }) => {
     dispatch(apiError(errors));
+  });
+
+export const getTargets = () => dispatch =>
+  targetApi.getAll().then((targets) => {
+    dispatch(getTargetsSuccess(targets));
+  }).catch((error) => {
+    dispatch(getTargetsError(error));
   });

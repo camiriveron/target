@@ -11,7 +11,7 @@ import {
   Circle
 } from 'react-google-maps';
 
-import { startNewTarget, endNewTarget } from 'actions/targetActions';
+import { startNewTarget, endNewTarget, getTargets, getTopics } from 'actions/targetActions';
 import targetIcon from 'resources/icons/target.png';
 import Target from 'components/target/Target';
 import { COLORS } from 'constants/constants';
@@ -26,10 +26,19 @@ class Map extends Component {
   state = { center: { lat: -34.91, lng: -56.163195 } };
 
   componentDidMount() {
+    const { topics, targets, getTargets, getTopics} = this.props;
+
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       this.setState({ center: { lat: latitude, lng: longitude } });
     });
+
+    if (!topics) {
+      getTopics();
+    }
+    if (!targets.size) {
+      getTargets();
+    }
   }
 
   onMapClick({ latLng }) {
@@ -96,6 +105,8 @@ Map.propTypes = {
   targets: object,
   topics: array,
   endNewTarget: func.isRequired,
+  getTargets: func.isRequired,
+  getTopics: func.isRequired
 };
 
 const formSelector = formValueSelector('create-target');
@@ -110,7 +121,9 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   startNewTarget: latlng => dispatch(startNewTarget(latlng)),
-  endNewTarget: () => dispatch(endNewTarget())
+  endNewTarget: () => dispatch(endNewTarget()),
+  getTargets: () => dispatch(getTargets()),
+  getTopics: () => dispatch(getTopics())
 });
 
 export default connect(mapState, mapDispatch)(withScriptjs(withGoogleMap(Map)));

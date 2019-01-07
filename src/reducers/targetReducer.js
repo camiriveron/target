@@ -1,3 +1,4 @@
+import { List } from 'immutable';
 import * as types from '../actions/actionTypes';
 import mapInitialState from './mapInitialState';
 
@@ -20,6 +21,12 @@ const targetReducer = (state = mapInitialState, action) => {
     }
     case types.GET_TOPICS_SUCCESS: {
       return state.set('topics', action.topics);
+    }
+    case types.GET_TARGETS_SUCCESS: {
+      return state.set('targets', List(action.payload.targets.map(({ target }) => target)));
+    }
+    case types.GET_TARGETS_ERROR: {
+      return state.set('targetErrors', action.payload.errors);
     }
     default:
       return state;
