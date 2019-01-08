@@ -13,7 +13,6 @@ const targetReducer = (state = mapInitialState, action) => {
     }
     case types.CREATE_TARGET_SUCCESS: {
       return state.update('targets', targetList => targetList.push(action.target))
-        .set('targetErrors', {})
         .set('addingNewTarget', false);
     }
     case types.API_ERROR: {
