@@ -13,9 +13,7 @@ import MenuHeader from 'components/common/MenuHeader';
 const CreateNewTarget = (props) => {
   const { endNewTarget, newTarget: { lat, lng }, createTarget } = props;
 
-  const submitCreateTarget = (target) => {
-    createTarget({ ...target.toJS(), lat, lng });
-  };
+  const submitCreateTarget = target => createTarget({ ...target.toJS(), lat, lng });
 
   return (
     <div className="page-container page-container--full-height overlap-menu">

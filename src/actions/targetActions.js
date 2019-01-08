@@ -1,3 +1,5 @@
+import { SubmissionError } from 'redux-form/immutable';
+import { parseErrors } from 'utils/helpers';
 import targetApi from 'api/targetApi';
 import * as types from './actionTypes';
 
@@ -28,8 +30,8 @@ export const apiError = errors => ({
 export const createTarget = target => dispatch =>
   targetApi.createTarget(target).then(({ target }) => {
     dispatch(createTargetSuccess(target));
-  }).catch(({ errors }) => {
-    dispatch(apiError(errors));
+  }).catch(({ errors, error }) => {
+    throw new SubmissionError({ _error: parseErrors(errors) || error });
   });
 
 export const getTopics = () => dispatch =>

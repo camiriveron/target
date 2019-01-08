@@ -15,7 +15,7 @@ import Input from 'components/common/Input';
 import Select from 'components/common/Select';
 import { validations, createTarget } from 'utils/constraints';
 import { getTopics } from 'actions/targetActions';
-import { parseApiErrors } from 'utils/helpers';
+import { parseErrors } from 'utils/helpers';
 
 const messages = defineMessages({
   radius: { id: 'target.form.radius' },
@@ -51,7 +51,7 @@ export class TargetForm extends PureComponent {
     return (
       <form className="form" onSubmit={handleSubmit}>
         {error && <span className="error">{error}</span>}
-        {errors && <span key={parseApiErrors(errors)} className="error">{parseApiErrors(errors)}</span>}
+        {errors && <span key={parseErrors(errors)} className="error">{parseErrors(errors)}</span>}
         <Field
           name="radius"
           label={intl.formatMessage(messages.radius)}

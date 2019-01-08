@@ -14,6 +14,7 @@ import {
 import { startNewTarget, endNewTarget } from 'actions/targetActions';
 import targetIcon from 'resources/icons/target.png';
 import Target from 'components/target/Target';
+import { COLORS } from 'constants/constants';
 
 class Map extends Component {
   constructor() {
@@ -53,10 +54,10 @@ class Map extends Component {
       clickableIcons: false
     };
     const addingTargetCircleOptions = {
-      strokeColor: '#efc638',
+      strokeColor: COLORS.yellow,
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: '#fff',
+      fillColor: COLORS.white,
       fillOpacity: 0.7,
       center: { lat, lng },
       radius: targetRadius

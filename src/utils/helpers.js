@@ -2,19 +2,7 @@ import { Iterable } from 'immutable';
 import queryString from 'query-string';
 import isEmpty from 'lodash/isEmpty';
 
-export const parseInputErrors = (error) => {
-  if (!error) {
-    return;
-  }
-  if (Iterable.isIterable(error)) {
-    return error.first();
-  } else if (Array.isArray(error)) {
-    return error[0];
-  }
-  return error;
-};
-
-export const parseApiErrors = (error) => {
+export const parseErrors = (error) => {
   if (!error) {
     return;
   }

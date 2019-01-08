@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, object, array } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { parseInputErrors } from 'utils/helpers';
+import { parseErrors } from 'utils/helpers';
 
 const Select = (props) => {
   const { input, label, options, placeholder, meta: { touched, error } } = props;
@@ -17,8 +17,8 @@ const Select = (props) => {
         {touched && error &&
           <span>
             <FormattedMessage
-              id={parseInputErrors(error)}
-              defaultMessage={parseInputErrors(error)}
+              id={parseErrors(error)}
+              defaultMessage={parseErrors(error)}
             />
           </span>
         }
