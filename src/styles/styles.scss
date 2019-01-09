@@ -38,7 +38,18 @@ $warning: #db4c4c;
 $black: #000000;
 $white: #ffffff;
 $sky-blue: #2fbcf7;
-$dark-gray: rgba(0, 0, 0, 0.7);
+$dark-gray: rgba(0, 0, 0, .7);
+
+/*------------------------------------*\
+  # Mixins
+\*------------------------------------*/
+
+@mixin flex-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /*------------------------------------*\
   # Common
@@ -47,10 +58,10 @@ $dark-gray: rgba(0, 0, 0, 0.7);
 .title {
   font-size: 1.5rem;
   font-weight: 600;
-  text-align: center;
   margin-bottom: 3rem;
-  text-transform: uppercase;
   margin-top: 1rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .subtitle {
@@ -59,16 +70,16 @@ $dark-gray: rgba(0, 0, 0, 0.7);
 }
 
 .copy {
-  font-size: 0.9rem;
-  text-align: center;
-  margin-bottom: 1rem;
+  font-size: .9rem;
   font-weight: normal;
+  letter-spacing: .01rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  text-align: center;
   text-align: justify;
-  letter-spacing: 0.01rem;
-  line-height: 1.5rem;
 
   /* Large and up */
-  @media screen and (min-width: 64em) {
+  @media screen and (min-width: map-get($breakpoints, medium)) {
     margin-bottom: 4rem;
   }
 
@@ -78,57 +89,57 @@ $dark-gray: rgba(0, 0, 0, 0.7);
 }
 
 .page-container {
+  background: $white;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 2rem;
-
-  &.page-container--full-height {
-    height: 100vh;
-  }
+  @include flex-center;
 
   &.page-container--shrink {
-    max-width: 360px;
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
+    max-width: 360px;
   }
 
   &.page-container--padded {
     padding: 3rem 2rem;
 
-    @media screen and (min-width: 64em) {
+    @media screen and (min-width: map-get($breakpoints, medium)) {
       padding: 5rem 2rem;
+    }
+  }
+
+  &.page-container--full-height {
+    @media screen and (min-width: map-get($breakpoints, medium)) {    
+      height: 100vh;
     }
   }
 }
 
 .link {
-  color: black;
-  text-transform: uppercase;
-  text-align: center;
-  padding-top: 1rem;
-  font-size: 0.9rem;
-  position: relative;
   border-bottom: 1px solid transparent;
+  color: black;
   cursor: pointer;
+  font-size: .9rem;
+  padding-top: 1rem;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
 
   &:hover {
-    color: $black;
     border-bottom: 1px solid $black;
+    color: $black;
   }
 
   &.link--secondary {
-    text-transform: none;
     color: $dark-gray;
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-weight: 600;
     letter-spacing: 1.8px;
+    text-transform: none;
 
     &:hover {
-      color: $dark-gray;
       border-bottom: 1px solid $dark-gray;
+      color: $dark-gray;
     }
   }
 
@@ -136,44 +147,75 @@ $dark-gray: rgba(0, 0, 0, 0.7);
     padding-top: 1rem;
 
     &:before {
+      border-top: 1px solid $black;
+      border-top: 1px solid $black;
       content: "";
-      border-top: 1px solid $black;
-      width: 100px;
-      border-top: 1px solid $black;
       height: 2px;
+      left: 50%;
       position: absolute;
       top: 0;
-      left: 50%;
       transform: translateX(-50%);
+      width: 100px;
     }
   }
 }
 
 .container--spaced {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   height: 100%;
+  justify-content: space-between;
 }
 
 .container--centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   height: 100%;
 }
 
 .footer {
   height: 50px;
+  @include flex-center;
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    height: 200px;
+  }
+}
+
+/*------------------------------------*\
+  # Home
+\*------------------------------------*/
+
+.home {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
 
-  @media screen and (min-width: 64em) {
-    height: 200px;
+  .home__menu {
+    height: 22rem;
+    margin: 2.5rem 0 0 0;
+    order: 2;
+  }
+
+  .home__map {
+    flex-grow: 1;
+    order: 1;
+    position: relative;
+  }
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    flex-direction: row;
+
+    .home__menu {
+      flex-grow: 1;
+      margin: 0;
+      order: 1;
+    }
+  
+    .home__map {
+      flex-grow: 10;
+      order: 2;
+    }
   }
 }
 
@@ -190,10 +232,15 @@ svg.logo--small {
 \*------------------------------------*/
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
+  max-width: 400px;
+  position: relative;
+  width: 300px;
+
+  &.form--shrink {
+    max-width: 200px;
+    width: 200px;
+  }
 }
 
 /*------------------------------------*\
@@ -201,42 +248,52 @@ svg.logo--small {
 \*------------------------------------*/
 
 .input-container {
+  max-width: 100%;
   text-align: center;
-  padding-left: 20%;
-  padding-right: 20%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  @include flex-center;
 }
 
 .input {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  width: 200px;
-  max-width: 200px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  font-size: .8rem;
+  max-width: 100%;
+  width: 100%;
+
+  &[type=number] {
+    text-align: center;
+  }  
 }
 
 .input-label {
-  width: 200px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-style: normal;
+  font-size: .9rem;
   font-stretch: normal;
+  font-style: normal;
+  font-weight: 600;
   line-height: normal;
+  max-width: 100%;
+  padding-bottom: .3rem;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .input-validation {
-  max-width: 200px;
   color: $warning;
-  text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: .7rem;
   margin-bottom: 1rem;
+  max-width: 100%;
+  position: relative;
+  text-transform: uppercase;
   white-space: nowrap;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  @include flex-center;
+
+  span {
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
 }
 
 /*------------------------------------*\
@@ -245,11 +302,11 @@ svg.logo--small {
 
 .select {
   border: 1px solid $black;
-  width: 200px;
-  max-width: 200px;
-  margin-bottom: 2rem;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  width: 100%;
 }
 
 /*------------------------------------*\
@@ -257,16 +314,16 @@ svg.logo--small {
 \*------------------------------------*/
 
 .primary-action {
-  font-size: 0.9rem;
   background-color: $black;
-  padding: 0.5rem 1rem;
-  min-width: 200px;
-  min-height: 39px;
   color: $white;
-  text-transform: uppercase;
-  font-weight: 600;
   cursor: pointer;
+  font-size: .9rem;
+  font-weight: 600;
   margin-bottom: 1rem;
+  min-height: 39px;
+  min-width: 200px;
+  padding: .5rem 1rem;
+  text-transform: uppercase;
 }
 
 /*------------------------------------*\
@@ -274,18 +331,18 @@ svg.logo--small {
 \*------------------------------------*/
 
 .demo {
+  align-items: center;
   background-color: $sky-blue;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
+  justify-content: center;
 
   &__img {
     display: block;
-    width: auto;
     height: 100%;
     object-fit: cover;
+    width: auto;
   }
 }
 
@@ -295,8 +352,11 @@ svg.logo--small {
 
 .error {
   color: $warning;
+  font-size: .8rem;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
+  position: absolute;
+  text-transform: uppercase;
+  top: -1.8rem;
 }
 
 /*------------------------------------*\
@@ -308,24 +368,28 @@ svg.logo--small {
 }
 
 .map-container {
-  height: 100vh;
-  position: relative;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
+  position: absolute;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .map {
   height: 100%;
 
   &:after {
-    position: absolute;
-    display: block;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-    content: '';
-    z-index: 5;
-    left: -5px;
-    top: 0;
     bottom: 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
+    content: '';
+    display: block;
+    left: -5px;
+    position: absolute;
+    top: 0;
     width: 5px;
+    z-index: 5;
   }
 }
 
@@ -334,29 +398,26 @@ svg.logo--small {
 \*------------------------------------*/
 
 .list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 .list-item {
+  font-weight: normal;
   margin-bottom: 0;
   margin-top: 2rem;
-  font-weight: normal;
-  position: relative;
   padding-left: 1rem;
+  position: relative;
   text-align: justify;
 
   &.list-item--bullet:before {
-    content: "";
-    position: absolute;
-    left: -0.4rem;
-    top: 0.4rem;
-    width: 0.8rem;
-    height: 0.8rem;
     background: $sky-blue;
     border-radius: 50%;
+    content: "";
+    height: .8rem;
+    left: -.4rem;
+    position: absolute;
+    top: .4rem;
+    width: .8rem;
   }
 }
 
@@ -365,23 +426,58 @@ svg.logo--small {
 \*------------------------------------*/
 
 .userAvatar {
-  width: 150px;
-  height: 150px;
   background: $sky-blue;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 150px;
   margin-bottom: 1rem;
+  width: 150px;
+  @include flex-center;
 }
 
 .userMenu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/*------------------------------------*\
+  # Overlap Menu
+\*------------------------------------*/
+
+.overlap-menu {
+  left: 50%;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;  
+}
+
+.menu-header {
+  @include flex-center;
+  background: $sky-blue;
+  height: 5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+
+  &__title {
+    color: $white;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+}
+
+.back-arrow {
+  color: $white;
+  font-size: 2rem;
+  left: 2rem;
+  position: absolute;
+
+  &:hover {
+    color: $white;
+  }
 }
 
 /*------------------------------------*\
@@ -409,5 +505,10 @@ svg.logo--small {
 }
 
 .center {
-  text-align: center;
+  @include flex-center;
+  text-align: center;  
+}
+
+.relative {
+  position: relative;
 }

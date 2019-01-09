@@ -33,50 +33,40 @@ class SignUpForm extends PureComponent {
     const { handleSubmit, submitting, intl } = this.props;
 
     return (
-      <form className="form" onSubmit={handleSubmit}>
-        <div>
-          <Field
-            name="username"
-            label={intl.formatMessage(messages.name)}
-            component={Input}
-            type="text"
-          />
-        </div>
-        <div>
-          <Field
-            name="email"
-            label={intl.formatMessage(messages.email)}
-            component={Input}
-            type="email"
-          />
-        </div>
-        <div>
-          <Field
-            name="password"
-            label={intl.formatMessage(messages.password)}
-            component={Input}
-            type="password"
-          />
-        </div>
-        <div>
-          <Field
-            name="passwordConfirmation"
-            label={intl.formatMessage(messages.passConfirmation)}
-            component={Input}
-            type="password"
-          />
-        </div>
-        <div>
-          <Field
-            name="gender"
-            label={intl.formatMessage(messages.gender)}
-            component="select"
-            className="select"
-          >
-            <option>{intl.formatMessage(messages.selectGender)}</option>
-            {gender.map(({ value, text }, key) => <option key={key} value={value}>{text}</option>)}
-          </Field>
-        </div>
+      <form className="form form--shrink" onSubmit={handleSubmit}>
+        <Field
+          name="username"
+          label={intl.formatMessage(messages.name)}
+          component={Input}
+          type="text"
+        />
+        <Field
+          name="email"
+          label={intl.formatMessage(messages.email)}
+          component={Input}
+          type="email"
+        />
+        <Field
+          name="password"
+          label={intl.formatMessage(messages.password)}
+          component={Input}
+          type="password"
+        />
+        <Field
+          name="passwordConfirmation"
+          label={intl.formatMessage(messages.passConfirmation)}
+          component={Input}
+          type="password"
+        />
+        <Field
+          name="gender"
+          label={intl.formatMessage(messages.gender)}
+          component="select"
+          className="select"
+        >
+          <option>{intl.formatMessage(messages.selectGender)}</option>
+          {gender.map(({ value, text }, key) => <option key={key} value={value}>{text}</option>)}
+        </Field>
         <button className="primary-action" type="submit">
           <FormattedMessage id="signup.form.submit" />
         </button>

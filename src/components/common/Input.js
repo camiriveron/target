@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { string, object } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { parseInputErrors } from 'utils/helpers';
+import { parseErrors } from 'utils/helpers';
 
 export default class Input extends PureComponent {
   static propTypes = {
@@ -30,8 +30,8 @@ export default class Input extends PureComponent {
           {touched && error &&
             <span>
               <FormattedMessage
-                id={parseInputErrors(error)}
-                defaultMessage={parseInputErrors(error)}
+                id={parseErrors(error)}
+                defaultMessage={parseErrors(error)}
               />
             </span>
           }

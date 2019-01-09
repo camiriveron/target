@@ -32,6 +32,17 @@ export default {
   'home.sidebar.target2': 'Travel',
   'home.sidebar.target3': 'Music',
 
+  'target.create.title': 'Create New Target',
+  'target.form.radius': 'Specify Area Length',
+  'target.form.title': 'Target Title',
+  'target.form.titlePlaceholder': 'Choose a title for your target',
+  'target.form.topic': 'Select a Topic',
+  'target.form.selectTopic': 'What do you want to talk about?',
+  'target.form.submit': 'Save Target',
+  'target.title.presence': 'You must enter a title to continue',
+  'target.radius.presence': 'You must enter an area length to continue',
+  'target.topic.presence': 'You must enter a topic to continue',
+
   // errors
   'name.presence': 'You must enter a name to continue',
   'email.presence': 'You must enter an email to continue',

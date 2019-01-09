@@ -7,7 +7,7 @@ import SmilesLogo from 'resources/icons/SmilesLogo';
 import { welcomeSuccess } from 'actions/userActions';
 
 const Welcome = ({ welcomeSuccess }) => (
-  <div className="page-container page-container--full-height page-container--padded page-container--shrink" >
+  <div className="page-container page-container--full-height page-container--padded page-container--shrink show-for-medium" >
     <div className="container--spaced">
       <div className="container--centered">
         <SmilesLogo />

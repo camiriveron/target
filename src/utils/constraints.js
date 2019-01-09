@@ -27,5 +27,27 @@ export const signUp = {
   },
 };
 
+export const createTarget = {
+  title: {
+    presence: { message: 'target.title.presence' },
+  },
+  radius: {
+    presence: { allowEmpty: false, message: 'target.radius.presence' },
+    numericality: {
+      onlyInteger: true,
+      greaterThan: 0,
+      lessThanOrEqualTo: 500
+    }
+  },
+  topicId: {
+    presence: { allowEmpty: false, message: 'target.topic.presence' },
+    numericality: {
+      onlyInteger: true,
+      greaterThan: 0,
+      message: 'target.topic.presence'
+    }
+  }
+};
+
 export const validations = (constraints, props = {}) =>
   data => validate(data.toJS(), constraints, props) || {};
