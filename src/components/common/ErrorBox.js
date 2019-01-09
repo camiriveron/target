@@ -1,7 +1,7 @@
 import React from 'react';
 import { func, object } from 'prop-types';
 import { connect } from 'react-redux';
-import { clearErrors } from 'actions/targetActions';
+import { clearErrors } from 'actions/commonActions';
 import {
   injectIntl,
   defineMessages,

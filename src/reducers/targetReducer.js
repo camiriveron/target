@@ -21,9 +21,6 @@ const targetReducer = (state = mapInitialState, action) => {
     case types.GET_TARGETS_SUCCESS: {
       return state.set('targets', List(action.targets.map(({ target }) => target)));
     }
-    case types.GET_TARGETS_ERROR: {
-      return state.set('targetErrors', action.errors);
-    }
     default:
       return state;
   }

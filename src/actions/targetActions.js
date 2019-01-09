@@ -1,6 +1,7 @@
 import { SubmissionError } from 'redux-form/immutable';
 import targetApi from 'api/targetApi';
 import * as types from './actionTypes';
+import { genericError } from './commonActions';
 
 export const startNewTarget = newTarget => ({
   type: types.START_NEW_TARGET,
@@ -9,11 +10,6 @@ export const startNewTarget = newTarget => ({
 
 export const endNewTarget = () => ({
   type: types.END_NEW_TARGET,
-});
-
-export const clearErrors = error => ({
-  type: types.CLEAR_ERROR,
-  error
 });
 
 export const createTargetSuccess = target => ({
@@ -26,19 +22,9 @@ export const getTargetsSuccess = targets => ({
   targets
 });
 
-export const getTargetsError = errors => ({
-  type: types.GET_TARGETS_ERROR,
-  errors
-});
-
 export const getTopicsSuccess = topics => ({
   type: types.GET_TOPICS_SUCCESS,
   topics
-});
-
-export const genericError = error => ({
-  type: types.GENERIC_ERROR,
-  error
 });
 
 export const createTarget = target => dispatch =>
