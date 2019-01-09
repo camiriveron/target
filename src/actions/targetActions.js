@@ -1,5 +1,4 @@
 import { SubmissionError } from 'redux-form/immutable';
-import { parseErrors } from 'utils/helpers';
 import targetApi from 'api/targetApi';
 import * as types from './actionTypes';
 
@@ -12,6 +11,11 @@ export const endNewTarget = () => ({
   type: types.END_NEW_TARGET,
 });
 
+export const clearErrors = error => ({
+  type: types.CLEAR_ERROR,
+  error
+});
+
 export const createTargetSuccess = target => ({
   type: types.CREATE_TARGET_SUCCESS,
   target
@@ -22,9 +26,9 @@ export const getTargetsSuccess = targets => ({
   targets
 });
 
-export const getTargetsError = error => ({
+export const getTargetsError = errors => ({
   type: types.GET_TARGETS_ERROR,
-  payload: error
+  errors
 });
 
 export const getTopicsSuccess = topics => ({
@@ -32,28 +36,32 @@ export const getTopicsSuccess = topics => ({
   topics
 });
 
-export const apiError = errors => ({
-  type: types.API_ERROR,
-  errors
+export const genericError = error => ({
+  type: types.GENERIC_ERROR,
+  error
 });
 
 export const createTarget = target => dispatch =>
   targetApi.createTarget(target).then(({ target }) => {
     dispatch(createTargetSuccess(target));
   }).catch(({ errors, error }) => {
-    throw new SubmissionError({ _error: parseErrors(errors) || error });
+    if (errors.user) {
+      throw new SubmissionError({ _error: errors.user });
+    } else {
+      throw new SubmissionError(typeof errors === 'object' ? errors : { _error: errors || error });
+    }
   });
 
 export const getTopics = () => dispatch =>
   targetApi.getTopics().then(({ topics }) => {
     dispatch(getTopicsSuccess(topics));
-  }).catch(({ errors }) => {
-    dispatch(apiError(errors));
+  }).catch(() => {
+    dispatch(genericError('topics.api.error'));
   });
 
 export const getTargets = () => dispatch =>
   targetApi.getAll().then(({ targets }) => {
     dispatch(getTargetsSuccess(targets));
-  }).catch(({ errors }) => {
-    dispatch(apiError(errors));
+  }).catch(() => {
+    dispatch(genericError('targets.api.error'));
   });

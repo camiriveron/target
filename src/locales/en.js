@@ -51,4 +51,6 @@ export default {
   'password.presence': 'You must enter a password to continue',
   'passwordConfirmation.presence': 'You must enter a password confirmation to continue',
   'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
+  'targets.api.error': 'An error occurred while getting the targets, please try again later.',
+  'topics.api.error': 'An error occurred while getting the topics, please try again later.'
 };

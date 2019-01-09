@@ -347,19 +347,6 @@ svg.logo--small {
 }
 
 /*------------------------------------*\
-  # Error
-\*------------------------------------*/
-
-.error {
-  color: $warning;
-  font-size: .8rem;
-  margin-bottom: 1rem;
-  position: absolute;
-  text-transform: uppercase;
-  top: -1.8rem;
-}
-
-/*------------------------------------*\
   # Map
 \*------------------------------------*/
 
@@ -477,6 +464,59 @@ svg.logo--small {
 
   &:hover {
     color: $white;
+  }
+}
+
+/*------------------------------------*\
+  # Error
+\*------------------------------------*/
+
+.error {
+  color: $warning;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+  position: absolute;
+  text-transform: uppercase;
+  top: -1.8rem;
+}
+
+/*------------------------------------*\
+  # Error Box
+\*------------------------------------*/
+
+.error-box-container {
+  left: 50%;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.error-box {
+  @include flex-center;
+  background: $warning;
+  height: 2.5rem;
+  padding: 2rem; 
+  text-align: center;
+
+  .error-message {
+    color: $white;
+  }
+
+  .close {
+    color: $white;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    right: 1rem;
+
+    @media screen and (min-width: map-get($breakpoints, medium)) {
+      right: 2rem;
+    }
+  }
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    padding: 1rem; 
   }
 }
 

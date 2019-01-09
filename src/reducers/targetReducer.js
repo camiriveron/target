@@ -9,15 +9,11 @@ const targetReducer = (state = mapInitialState, action) => {
         .set('newTarget', action.newTarget);
     }
     case types.END_NEW_TARGET: {
-      return state.set('addingNewTarget', false)
-        .set('targetErrors', {});
+      return state.set('addingNewTarget', false);
     }
     case types.CREATE_TARGET_SUCCESS: {
       return state.update('targets', targetList => targetList.push(action.target))
         .set('addingNewTarget', false);
-    }
-    case types.API_ERROR: {
-      return state.set('targetErrors', action.errors);
     }
     case types.GET_TOPICS_SUCCESS: {
       return state.set('topics', action.topics);
@@ -26,7 +22,7 @@ const targetReducer = (state = mapInitialState, action) => {
       return state.set('targets', List(action.targets.map(({ target }) => target)));
     }
     case types.GET_TARGETS_ERROR: {
-      return state.set('targetErrors', action.payload.errors);
+      return state.set('targetErrors', action.errors);
     }
     default:
       return state;
