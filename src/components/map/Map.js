@@ -34,12 +34,8 @@ class Map extends Component {
       this.setState({ center: { lat: latitude, lng: longitude } });
     });
 
-    if (!topics) {
-      getTopics();
-    }
-    if (!targets.size) {
-      getTargets();
-    }
+    !topics && getTopics();
+    !targets.size && getTargets();
   }
 
   onMapClick({ latLng }) {
@@ -125,11 +121,11 @@ const mapState = state => ({
   errors: state.getIn(['common', 'errors'])
 });
 
-const mapDispatch = dispatch => ({
-  startNewTarget: latlng => dispatch(startNewTarget(latlng)),
-  endNewTarget: () => dispatch(endNewTarget()),
-  getTargets: () => dispatch(getTargets()),
-  getTopics: () => dispatch(getTopics())
+const mapDispatch = ({
+  startNewTarget,
+  endNewTarget,
+  getTargets,
+  getTopics
 });
 
 export default connect(mapState, mapDispatch)(withScriptjs(withGoogleMap(Map)));

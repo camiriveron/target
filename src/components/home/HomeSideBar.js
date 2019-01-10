@@ -15,8 +15,7 @@ const HomeSideBar = ({ username, targets }) => (
         <UserMenu username={username} />
       </div>
       <div className="container--spaced">
-        {targets.size > 0 && <Matches />}
-        {!targets.size > 0 && <FirstTarget />}
+        {targets.size ? <Matches /> : <FirstTarget />}
       </div>
       <div className="footer">
         <SmilesLogo className="logo--small" />
