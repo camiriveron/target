@@ -25,6 +25,13 @@ class Map extends Component {
 
   state = { center: { lat: -34.91, lng: -56.163195 } };
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      this.setState({ center: { lat: latitude, lng: longitude } });
+    });
+  }
+
   onMapClick({ latLng }) {
     const { addingNewTarget, startNewTarget, endNewTarget } = this.props;
 
