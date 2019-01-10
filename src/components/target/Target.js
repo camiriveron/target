@@ -1,14 +1,21 @@
 import React, { Fragment } from 'react';
-import { object, array } from 'prop-types';
+import { connect } from 'react-redux';
+import { object, array, func } from 'prop-types';
 import { Marker, Circle } from 'react-google-maps';
 import { COLORS } from 'constants/constants';
+import { selectTarget } from 'actions/targetActions';
 
 const Target = (props) => {
-  const { target: { id, topicId, lat, lng, radius } } = props;
+  const { target, selectTarget } = props;
+  const { id, topicId, lat, lng, radius } = target;
 
   const getTopicIcon = (topicId) => {
     const { topics } = props;
-    const topic = topics.find(topic => topic.topic.id == topicId);
+    let topic = null;
+
+    if (topics) {
+      topic = topics.find(topic => topic.topic.id == topicId);
+    }
     return topic ? topic.topic.icon : '';
   };
 
@@ -30,6 +37,7 @@ const Target = (props) => {
           center: { lat, lng },
           radius
         }}
+        onClick={() => { selectTarget(target); }}
       />
     </Fragment>
   );
@@ -37,7 +45,14 @@ const Target = (props) => {
 
 Target.propTypes = {
   target: object.isRequired,
-  topics: array
+  topics: array,
+  selectTarget: func.isRequired
 };
 
-export default Target;
+const mapStateToProps = () => ({});
+
+const mapDispatch = dispatch => ({
+  selectTarget: target => dispatch(selectTarget(target))
+});
+
+export default connect(mapStateToProps, mapDispatch)(Target);

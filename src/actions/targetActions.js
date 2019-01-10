@@ -51,3 +51,17 @@ export const getTargets = () => dispatch =>
   }).catch(() => {
     dispatch(genericError('targets.api.error'));
   });
+
+export const selectTarget = target => ({
+  type: types.SELECT_TARGET,
+  target
+});
+
+export const deleteTarget = target => ({
+  type: types.DELETE_TARGET,
+  target
+});
+
+export const endSelectedTarget = () => ({
+  type: types.END_SELECT_TARGET
+});

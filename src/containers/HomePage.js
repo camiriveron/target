@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Map from 'components/map/Map';
 import Welcome from 'components/home/Welcome';
 import HomeSideBar from 'components/home/HomeSideBar';
-import CreateNewTarget from 'components/map/CreateNewTarget';
+import CreateNewTarget from 'components/target/CreateNewTarget';
 
 import { GOOGLE_MAPS_URL } from 'constants/constants';
 

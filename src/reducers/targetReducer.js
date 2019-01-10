@@ -21,6 +21,9 @@ const targetReducer = (state = mapInitialState, action) => {
     case types.GET_TARGETS_SUCCESS: {
       return state.set('targets', List(action.targets.map(({ target }) => target)));
     }
+    case types.SELECT_TARGET: {
+      return state.set('selectedTarget', action.target);
+    }
     default:
       return state;
   }
