@@ -31,6 +31,7 @@ export default {
   'home.sidebar.target1': 'Football',
   'home.sidebar.target2': 'Travel',
   'home.sidebar.target3': 'Music',
+  'home.sidebar.noMatches': 'There are not matches for your targets yet.',
 
   'target.create.title': 'Create New Target',
   'target.form.radius': 'Specify Area Length',
@@ -50,4 +51,6 @@ export default {
   'password.presence': 'You must enter a password to continue',
   'passwordConfirmation.presence': 'You must enter a password confirmation to continue',
   'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
+  'targets.api.error': 'An error occurred while getting the targets, please try again later.',
+  'topics.api.error': 'An error occurred while getting the topics, please try again later.'
 };

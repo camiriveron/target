@@ -11,14 +11,12 @@ import { GOOGLE_MAPS_URL } from 'constants/constants';
 
 const HomePage = ({ signedUp, addingNewTarget }) =>
   <div className="home">
-    <div className="relative home__menu show-for-medium" >
-      {signedUp ? <Welcome /> : <HomeSideBar />}
+    <div className="relative home__menu" >
+      <div className="show-for-medium">
+        {signedUp ? <Welcome /> : <HomeSideBar />}
+      </div>
       {addingNewTarget && <CreateNewTarget /> }
     </div>
-    {addingNewTarget &&
-    <div className="relative home__menu show-for-small-only" >
-      <CreateNewTarget />
-    </div>}
     <div className="home__map">
       <Map
         googleMapURL={GOOGLE_MAPS_URL}

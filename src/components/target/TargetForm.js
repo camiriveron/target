@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { func, array, bool, object } from 'prop-types';
+import { func, array, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 
@@ -15,7 +15,6 @@ import Input from 'components/common/Input';
 import Select from 'components/common/Select';
 import { validations, createTarget } from 'utils/constraints';
 import { getTopics } from 'actions/targetActions';
-import { parseErrors } from 'utils/helpers';
 
 const messages = defineMessages({
   radius: { id: 'target.form.radius' },
@@ -32,8 +31,7 @@ export class TargetForm extends PureComponent {
     submitting: bool.isRequired,
     error: array,
     topics: array,
-    getTopics: func.isRequired,
-    errors: object
+    getTopics: func.isRequired
   }
 
   componentDidMount() {
@@ -45,13 +43,12 @@ export class TargetForm extends PureComponent {
   }
 
   render() {
-    const { handleSubmit, error, submitting, intl, topics, errors } = this.props;
+    const { handleSubmit, error, submitting, intl, topics } = this.props;
     const toInt = value => (value === undefined ? undefined : parseInt(value, 10));
 
     return (
       <form className="form" onSubmit={handleSubmit}>
         {error && <span className="error">{error}</span>}
-        {errors && <span key={parseErrors(errors)} className="error">{parseErrors(errors)}</span>}
         <Field
           name="radius"
           label={intl.formatMessage(messages.radius)}
@@ -85,8 +82,7 @@ export class TargetForm extends PureComponent {
 
 const mapState = state => ({
   initialValues: { radius: state.getIn(['target', 'targetRadius']), title: '' },
-  topics: state.getIn(['target', 'topics']),
-  errors: state.getIn(['target', 'targetErrors'])
+  topics: state.getIn(['target', 'topics'])
 });
 
 const mapDispatch = dispatch => ({

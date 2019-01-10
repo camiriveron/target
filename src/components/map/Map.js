@@ -11,9 +11,10 @@ import {
   Circle
 } from 'react-google-maps';
 
-import { startNewTarget, endNewTarget } from 'actions/targetActions';
+import { startNewTarget, endNewTarget, getTargets, getTopics } from 'actions/targetActions';
 import targetIcon from 'resources/icons/target.png';
 import Target from 'components/target/Target';
+import ErrorBox from 'components/common/ErrorBox';
 import { COLORS } from 'constants/constants';
 
 class Map extends Component {
@@ -26,10 +27,15 @@ class Map extends Component {
   state = { center: { lat: -34.91, lng: -56.163195 } };
 
   componentDidMount() {
+    const { topics, targets, getTargets, getTopics } = this.props;
+
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       this.setState({ center: { lat: latitude, lng: longitude } });
     });
+
+    !topics && getTopics();
+    !targets.size && getTargets();
   }
 
   onMapClick({ latLng }) {
@@ -47,7 +53,7 @@ class Map extends Component {
   }
 
   render() {
-    const { addingNewTarget, targetRadius, newTarget: { lat, lng }, targets, topics } = this.props;
+    const { addingNewTarget, targetRadius, newTarget: { lat, lng }, targets, topics, errors } = this.props;
 
     const defaultZoom = 15;
     const mapOptions = {
@@ -71,19 +77,22 @@ class Map extends Component {
     };
 
     return (
-      <GoogleMap
-        defaultZoom={defaultZoom}
-        center={this.state.center}
-        onClick={this.onMapClick}
-        defaultOptions={mapOptions}
-      >
-        {addingNewTarget &&
-          <Fragment>
-            <Marker icon={{ url: targetIcon }} position={{ lat, lng }} />
-            <Circle options={addingTargetCircleOptions} />
-          </Fragment>}
-        {targets && targets.map((target, key) => <Target target={target} key={key} topics={topics} />)}
-      </GoogleMap>
+      <Fragment>
+        {errors && <ErrorBox errors={errors} />}
+        <GoogleMap
+          defaultZoom={defaultZoom}
+          center={this.state.center}
+          onClick={this.onMapClick}
+          defaultOptions={mapOptions}
+        >
+          {addingNewTarget &&
+            <Fragment>
+              <Marker icon={{ url: targetIcon }} position={{ lat, lng }} />
+              <Circle options={addingTargetCircleOptions} />
+            </Fragment>}
+          {targets && targets.map((target, key) => <Target target={target} key={key} topics={topics} />)}
+        </GoogleMap>
+      </Fragment>
     );
   }
 }
@@ -96,6 +105,9 @@ Map.propTypes = {
   targets: object,
   topics: array,
   endNewTarget: func.isRequired,
+  getTargets: func.isRequired,
+  getTopics: func.isRequired,
+  errors: object
 };
 
 const formSelector = formValueSelector('create-target');
@@ -105,12 +117,15 @@ const mapState = state => ({
   targetRadius: formSelector(state, 'radius'),
   newTarget: state.getIn(['target', 'newTarget']),
   targets: state.getIn(['target', 'targets']),
-  topics: state.getIn(['target', 'topics'])
+  topics: state.getIn(['target', 'topics']),
+  errors: state.getIn(['common', 'errors'])
 });
 
-const mapDispatch = dispatch => ({
-  startNewTarget: latlng => dispatch(startNewTarget(latlng)),
-  endNewTarget: () => dispatch(endNewTarget())
+const mapDispatch = ({
+  startNewTarget,
+  endNewTarget,
+  getTargets,
+  getTopics
 });
 
 export default connect(mapState, mapDispatch)(withScriptjs(withGoogleMap(Map)));
