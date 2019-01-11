@@ -24,6 +24,12 @@ const targetReducer = (state = mapInitialState, action) => {
     case types.SELECT_TARGET: {
       return state.set('selectedTarget', action.target);
     }
+    case types.END_SELECT_TARGET: {
+      return state.set('selectedTarget', null);
+    }
+    case types.DELETE_TARGET_SUCCESS: {
+      return state.update('targets', targetList => targetList.filterNot(target => target.id === action.targetId));
+    }
     default:
       return state;
   }

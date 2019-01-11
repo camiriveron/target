@@ -1,0 +1,57 @@
+/*------------------------------------*\
+  # Home
+\*------------------------------------*/
+
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+    .home__menu {
+      height: 22rem;
+      margin: 2.5rem 0 0 0;
+      order: 2;
+      position: relative;
+      min-width: 350px;
+    }
+  
+    .home__map {
+      flex-grow: 1;
+      order: 1;
+      position: relative;
+    }
+  
+    @media screen and (min-width: map-get($breakpoints, medium)) {
+      flex-direction: row;
+  
+      .home__menu {
+        flex-grow: 1;
+        margin: 0;
+        order: 1;
+      }
+    
+      .home__map {
+        flex-grow: 10;
+        order: 2;
+      }
+    }
+  }
+
+/*------------------------------------*\
+# User Menu
+\*------------------------------------*/
+
+.userAvatar {
+  background: $sky-blue;
+  border-radius: 50%;
+  height: 150px;
+  margin-bottom: 1rem;
+  width: 150px;
+  @include flex-center;
+}
+
+.userMenu {
+  @include flex-center;
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
+  padding-bottom: 1rem;
+}

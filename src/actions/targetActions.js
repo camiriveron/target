@@ -1,7 +1,7 @@
 import { SubmissionError } from 'redux-form/immutable';
 import targetApi from 'api/targetApi';
 import * as types from './actionTypes';
-import { genericError } from './commonActions';
+import { genericError, showLoading, hideLoading } from './commonActions';
 
 export const startNewTarget = newTarget => ({
   type: types.START_NEW_TARGET,
@@ -25,6 +25,20 @@ export const getTargetsSuccess = targets => ({
 export const getTopicsSuccess = topics => ({
   type: types.GET_TOPICS_SUCCESS,
   topics
+});
+
+export const selectTarget = target => ({
+  type: types.SELECT_TARGET,
+  target
+});
+
+export const endSelectedTarget = () => ({
+  type: types.END_SELECT_TARGET
+});
+
+export const deleteTargetSuccess = targetId => ({
+  type: types.DELETE_TARGET_SUCCESS,
+  targetId
 });
 
 export const createTarget = target => dispatch =>
@@ -52,16 +66,15 @@ export const getTargets = () => dispatch =>
     dispatch(genericError('targets.api.error'));
   });
 
-export const selectTarget = target => ({
-  type: types.SELECT_TARGET,
-  target
-});
+export const deleteTarget = id => (dispatch) => {
+  dispatch(showLoading());
 
-export const deleteTarget = target => ({
-  type: types.DELETE_TARGET,
-  target
-});
-
-export const endSelectedTarget = () => ({
-  type: types.END_SELECT_TARGET
-});
+  return targetApi.deleteTarget(id).then(() => {
+    dispatch(deleteTargetSuccess(id));
+  }).catch(() => {
+    dispatch(genericError('targets.delete.error'));
+  }).finally(() => {
+    dispatch(endSelectedTarget());
+    dispatch(hideLoading());
+  });
+};

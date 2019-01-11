@@ -1,0 +1,40 @@
+/*------------------------------------*\
+  # Error Box
+\*------------------------------------*/
+
+.error-box-container {
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 10;
+  }
+  
+  .error-box {
+    @include flex-center;
+    background: $warning;
+    height: 2.5rem;
+    padding: 2rem; 
+    text-align: center;
+  
+    .error-message {
+      color: $white;
+    }
+  
+    .close {
+      color: $white;
+      cursor: pointer;
+      font-weight: bold;
+      position: absolute;
+      right: 1rem;
+  
+      @media screen and (min-width: map-get($breakpoints, medium)) {
+        right: 2rem;
+      }
+    }
+  
+    @media screen and (min-width: map-get($breakpoints, medium)) {
+      padding: 1rem; 
+    }
+  }

@@ -13,6 +13,10 @@ class Target {
   static createTarget(target) {
     return api.post('/targets', { target });
   }
+
+  static deleteTarget(id) {
+    return api.delete(`/targets/${id}`);
+  }
 }
 
 export default Target;

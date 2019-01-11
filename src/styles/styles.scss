@@ -1,5 +1,9 @@
 @import "~loaders.css/src/animations/ball-scale-multiple";
 @import "settings";
+@import "mixins";
+@import "variables";
+@import 'components/all';
+@import 'containers/all';
 
 html {
   font: 13px "Open Sans", Helvetica, Arial, sans-serif;
@@ -28,27 +32,6 @@ body {
   .loader-active {
     display: block;
   }
-}
-
-/*------------------------------------*\
-  # Colors
-\*------------------------------------*/
-
-$warning: #db4c4c;
-$black: #000000;
-$white: #ffffff;
-$sky-blue: #2fbcf7;
-$dark-gray: rgba(0, 0, 0, .7);
-
-/*------------------------------------*\
-  # Mixins
-\*------------------------------------*/
-
-@mixin flex-center {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 /*------------------------------------*\
@@ -97,7 +80,7 @@ $dark-gray: rgba(0, 0, 0, .7);
   &.page-container--shrink {
     margin-left: auto;
     margin-right: auto;
-    max-width: 360px;
+    max-width: 350px;
   }
 
   &.page-container--padded {
@@ -183,43 +166,6 @@ $dark-gray: rgba(0, 0, 0, .7);
 }
 
 /*------------------------------------*\
-  # Home
-\*------------------------------------*/
-
-.home {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  .home__menu {
-    height: 22rem;
-    margin: 2.5rem 0 0 0;
-    order: 2;
-  }
-
-  .home__map {
-    flex-grow: 1;
-    order: 1;
-    position: relative;
-  }
-
-  @media screen and (min-width: map-get($breakpoints, medium)) {
-    flex-direction: row;
-
-    .home__menu {
-      flex-grow: 1;
-      margin: 0;
-      order: 1;
-    }
-  
-    .home__map {
-      flex-grow: 10;
-      order: 2;
-    }
-  }
-}
-
-/*------------------------------------*\
   # Logo
 \*------------------------------------*/
 
@@ -297,19 +243,6 @@ svg.logo--small {
 }
 
 /*------------------------------------*\
-  # Select
-\*------------------------------------*/
-
-.select {
-  border: 1px solid $black;
-  font-size: .8rem;
-  margin-bottom: 1rem;
-  max-width: 100%;
-  text-transform: uppercase;
-  width: 100%;
-}
-
-/*------------------------------------*\
   # Buttons
 \*------------------------------------*/
 
@@ -324,6 +257,10 @@ svg.logo--small {
   min-width: 200px;
   padding: .5rem 1rem;
   text-transform: uppercase;
+
+  &.warning{
+    background-color: $warning;
+  }
 }
 
 /*------------------------------------*\
@@ -343,40 +280,6 @@ svg.logo--small {
     height: 100%;
     object-fit: cover;
     width: auto;
-  }
-}
-
-/*------------------------------------*\
-  # Map
-\*------------------------------------*/
-
-.loading-map {
-  height: 100%;
-}
-
-.map-container {
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.map {
-  height: 100%;
-
-  &:after {
-    bottom: 0;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
-    content: '';
-    display: block;
-    left: -5px;
-    position: absolute;
-    top: 0;
-    width: 5px;
-    z-index: 5;
   }
 }
 
@@ -409,62 +312,12 @@ svg.logo--small {
 }
 
 /*------------------------------------*\
-  # User Menu
-\*------------------------------------*/
-
-.userAvatar {
-  background: $sky-blue;
-  border-radius: 50%;
-  height: 150px;
-  margin-bottom: 1rem;
-  width: 150px;
-  @include flex-center;
-}
-
-.userMenu {
-  @include flex-center;
-  border-bottom: 1px solid rgba(0, 0, 0, .5);
-  padding-bottom: 1rem;
-}
-
-/*------------------------------------*\
   # Overlap Menu
 \*------------------------------------*/
 
-.overlap-menu {
-  left: 50%;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
+.overlap-menu {  
+  padding: 0; 
   width: 100%;  
-}
-
-.menu-header {
-  @include flex-center;
-  background: $sky-blue;
-  height: 5rem;
-  margin-bottom: 1rem;
-  position: relative;
-  text-align: center;
-  width: 100%;
-
-  &__title {
-    color: $white;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-  }
-}
-
-.back-arrow {
-  color: $white;
-  font-size: 2rem;
-  left: 2rem;
-  position: absolute;
-
-  &:hover {
-    color: $white;
-  }
 }
 
 /*------------------------------------*\
@@ -481,42 +334,25 @@ svg.logo--small {
 }
 
 /*------------------------------------*\
-  # Error Box
+  # Fields
 \*------------------------------------*/
 
-.error-box-container {
-  left: 50%;
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
-  width: 100%;
-}
-
-.error-box {
+.field-container {
   @include flex-center;
-  background: $warning;
-  height: 2.5rem;
-  padding: 2rem; 
-  text-align: center;
+  width: 300px;
 
-  .error-message {
-    color: $white;
+  .field {
+    width: 100%;
   }
-
-  .close {
-    color: $white;
-    cursor: pointer;
-    font-weight: bold;
-    position: absolute;
-    right: 1rem;
-
-    @media screen and (min-width: map-get($breakpoints, medium)) {
-      right: 2rem;
-    }
+  
+  .field__value {
+    border: 1px solid $black;
+    margin: .5rem 0;
+    padding: .5rem;
   }
-
-  @media screen and (min-width: map-get($breakpoints, medium)) {
-    padding: 1rem; 
+  
+  .field__label {
+    text-transform: uppercase;
   }
 }
 
