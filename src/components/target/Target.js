@@ -51,10 +51,8 @@ Target.propTypes = {
   isSelectedTarget: bool
 };
 
-const mapStateToProps = () => ({});
-
 const mapDispatch = dispatch => ({
   selectTarget: target => dispatch(selectTarget(target))
 });
 
-export default connect(mapStateToProps, mapDispatch)(Target);
+export default connect(null, mapDispatch)(Target);
