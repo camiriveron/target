@@ -6,6 +6,7 @@ import router from './routerReducer';
 import signup from './signupReducer';
 import target from './targetReducer';
 import common from './commonReducer';
+import matches from './matchesReducer';
 
 const rootReducer = combineReducers({
   form,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   router,
   signup,
   target,
-  common
+  common,
+  matches
 });
 
 export default rootReducer;
