@@ -19,6 +19,15 @@ export const parseErrors = (error) => {
   return error;
 };
 
+export const getTopicIcon = (topics, topicId) => {
+  let topic = null;
+
+  if (topics) {
+    topic = topics.find(topic => topic.topic.id == topicId);
+  }
+  return topic ? topic.topic.icon : '';
+};
+
 export const applyQueryParams = (url, params = {}) => {
   if (isEmpty(params)) {
     return url;

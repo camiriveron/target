@@ -4,26 +4,22 @@ import { object, array, func, bool } from 'prop-types';
 import { Marker, Circle } from 'react-google-maps';
 import { COLORS } from 'constants/constants';
 import { selectTarget } from 'actions/targetActions';
+import { getTopicIcon } from 'utils/helpers';
 
 const Target = (props) => {
   const { target, selectTarget, isSelectedTarget } = props;
   const { id, topicId, lat, lng, radius } = target;
 
-  const getTopicIcon = (topicId) => {
+  const getIcon = (topicId) => {
     const { topics } = props;
-    let topic = null;
-
-    if (topics) {
-      topic = topics.find(topic => topic.topic.id == topicId);
-    }
-    return topic ? topic.topic.icon : '';
+    return getTopicIcon(topics, topicId);
   };
 
   return (
     <Fragment key={`fragment${id}`}>
       <Marker
         key={`marker${id}`}
-        icon={{ url: getTopicIcon(topicId), anchor: { x: 15, y: 15 }, scaledSize: { width: 30, height: 30 } }}
+        icon={{ url: getIcon(topicId), anchor: { x: 15, y: 15 }, scaledSize: { width: 30, height: 30 } }}
         position={{ lat, lng }}
         onClick={() => { selectTarget(target); }}
       />

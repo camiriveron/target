@@ -8,6 +8,7 @@ import { deleteTarget, endSelectedTarget } from 'actions/targetActions';
 import MenuHeader from 'components/common/MenuHeader';
 import Modal from 'components/common/Modal';
 import Loading from 'components/common/Loading';
+import { getTopicIcon } from 'utils/helpers';
 
 class TargetDetails extends Component {
   constructor() {
@@ -28,14 +29,9 @@ class TargetDetails extends Component {
     return topic ? topic.topic.label : '';
   }
 
-  getTopicIcon(topicId) {
+  getIcon(topicId) {
     const { topics } = this.props;
-    let topic = null;
-
-    if (topics) {
-      topic = topics.find(topic => topic.topic.id == topicId);
-    }
-    return topic ? topic.topic.icon : '';
+    return getTopicIcon(topics, topicId);
   }
 
   confirmDelete() {
@@ -94,7 +90,7 @@ class TargetDetails extends Component {
           <Modal onClose={this.closeDeleteModal}>
             <span className="modal__title">Sure you want to delete this target?</span>
             <div className="modal__icon">
-              <img alt="Topic Icon" src={this.getTopicIcon(selectedTarget.topicId)} />
+              <img alt="Topic Icon" src={this.getIcon(selectedTarget.topicId)} />
             </div>
             <span className="modal__title">{ selectedTarget.title }</span>
             <button className="primary-action mb0" type="button" onClick={() => { this.deleteTarget(); }} >
