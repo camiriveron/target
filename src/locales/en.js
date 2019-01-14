@@ -52,6 +52,7 @@ export default {
   'target.topic.presence': 'You must enter a topic to continue',
 
   'matches.list.title': 'Your Matches',
+  'matches.api.error': 'An error occurred while getting your matches, please try again later.',
 
   // errors
   'name.presence': 'You must enter a name to continue',
