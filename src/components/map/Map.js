@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { bool, func, number, array, object } from 'prop-types';
+import { bool, func, number, array, object, oneOfType } from 'prop-types';
 import { formValueSelector } from 'redux-form/immutable';
 
 import {
@@ -89,7 +89,15 @@ class Map extends Component {
             <Marker icon={{ url: targetIcon }} position={{ lat, lng }} />
             <Circle options={addingTargetCircleOptions} />
           </Fragment>}
-        {targets && targets.map((target, key) => <Target isSelectedTarget={selectedTarget && selectedTarget.id === target.id} target={target} key={key} topics={topics} />)}
+        {targets &&
+          targets.map((target, key) => (
+            <Target
+              isSelectedTarget={selectedTarget && selectedTarget.id === target.id}
+              target={target}
+              key={key}
+              topics={topics}
+            />
+          ))}
       </GoogleMap>
     );
   }
@@ -100,7 +108,10 @@ Map.propTypes = {
   startNewTarget: func.isRequired,
   targetRadius: number,
   newTarget: object,
-  targets: object,
+  targets: oneOfType([
+    array,
+    object
+  ]),
   topics: array,
   endNewTarget: func.isRequired,
   getTargets: func.isRequired,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { string, object } from 'prop-types';
+import { string, object, array, oneOfType } from 'prop-types';
 
 import SmilesLogo from 'resources/icons/SmilesLogo';
 import UserMenu from 'components/user/UserMenu';
@@ -27,7 +27,10 @@ const HomeSideBar = ({ username, targets }) => (
 
 HomeSideBar.propTypes = {
   username: string,
-  targets: object
+  targets: oneOfType([
+    array,
+    object
+  ]),
 };
 
 const mapStateToProps = state => ({

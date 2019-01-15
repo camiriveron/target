@@ -8,7 +8,6 @@ import { deleteTarget, endSelectedTarget } from 'actions/targetActions';
 import MenuHeader from 'components/common/MenuHeader';
 import Modal from 'components/common/Modal';
 import Loading from 'components/common/Loading';
-import { getTopicIcon } from 'utils/helpers';
 
 class TargetDetails extends Component {
   constructor() {
@@ -16,23 +15,10 @@ class TargetDetails extends Component {
 
     this.confirmDelete = this.confirmDelete.bind(this);
     this.closeDeleteModal = this.closeDeleteModal.bind(this);
+    this.deleteTarget = this.deleteTarget.bind(this);
   }
+
   state = { confirmDelete: false };
-
-  getTopicLabel(topicId) {
-    const { topics } = this.props;
-    let topic = null;
-
-    if (topics) {
-      topic = topics.find(topic => topic.topic.id == topicId);
-    }
-    return topic ? topic.topic.label : '';
-  }
-
-  getIcon(topicId) {
-    const { topics } = this.props;
-    return getTopicIcon(topics, topicId);
-  }
 
   confirmDelete() {
     this.setState({ confirmDelete: true });
@@ -74,11 +60,11 @@ class TargetDetails extends Component {
                 </div>
                 <div className="field">
                   <span className="field__label"><FormattedMessage id="target.details.topic" /></span>
-                  <div className="field__value center">{ this.getTopicLabel(selectedTarget.topicId) }</div>
+                  <div className="field__value center">{ selectedTarget.topic.label }</div>
                 </div>
               </div>
             </div>
-            <button className="primary-action warning" type="button" onClick={() => { this.confirmDelete(); }} >
+            <button className="primary-action warning" type="button" onClick={this.confirmDelete} >
               <FormattedMessage id="target.delete" />
             </button>
           </div>
@@ -90,14 +76,14 @@ class TargetDetails extends Component {
           <Modal onClose={this.closeDeleteModal}>
             <span className="modal__title">Sure you want to delete this target?</span>
             <div className="modal__icon">
-              <img alt="Topic Icon" src={this.getIcon(selectedTarget.topicId)} />
+              <img alt="Topic Icon" src={selectedTarget.topic.icon} />
             </div>
             <span className="modal__title">{ selectedTarget.title }</span>
-            <button className="primary-action mb0" type="button" onClick={() => { this.deleteTarget(); }} >
+            <button className="primary-action mb0" type="button" onClick={this.deleteTarget} >
               <FormattedMessage id="target.delete" />
             </button>
             {showLoading && <Loading />}
-            <span className="link" onClick={() => { this.closeDeleteModal(); }}>
+            <span className="link" onClick={this.closeDeleteModal} >
               <FormattedMessage id="target.cancel" />
             </span>
           </Modal>}
