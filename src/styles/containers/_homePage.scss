@@ -41,17 +41,62 @@
 # User Menu
 \*------------------------------------*/
 
-.userAvatar {
+.avatar {
   background: $sky-blue;
   border-radius: 50%;
   height: 150px;
   margin-bottom: 1rem;
   width: 150px;
   @include flex-center;
+
+  &--clickable {
+    cursor: pointer;
+
+    svg {
+      cursor: pointer;
+    }
+  } 
+  
+  .preview {
+    @include flex-center;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;    
+
+    img {   
+      cursor: pointer;
+      max-width: 100%;
+      max-height: 100%;
+      width: fit-content;
+      height: fit-content;
+      object-fit: cover;
+    }
+  }
+
+  input[type=file] { 
+    visibility: hidden;
+    position: absolute
+  }
 }
 
 .userMenu {
   @include flex-center;
   border-bottom: 1px solid rgba(0, 0, 0, .5);
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
+
+  .userMenu__actions {
+    @include flex-center;
+    flex-direction: row;
+
+    a:first-child:after {
+      content: "/";
+      color: $dark-gray;
+      position: absolute;
+      right: -.8rem;
+    }
+    
+    & > * {
+      margin: 0 .6rem;
+    }
+  }
 }

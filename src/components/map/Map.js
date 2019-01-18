@@ -54,7 +54,14 @@ class Map extends Component {
   }
 
   render() {
-    const { addingNewTarget, targetRadius, newTarget: { lat, lng }, targets, topics, selectedTarget } = this.props;
+    const {
+      addingNewTarget,
+      targetRadius,
+      newTarget: { lat, lng },
+      targets,
+      topics,
+      selectedTarget,
+      clickEnabled } = this.props;
 
     const defaultZoom = 15;
     const mapOptions = {
@@ -81,7 +88,7 @@ class Map extends Component {
       <GoogleMap
         defaultZoom={defaultZoom}
         center={this.state.center}
-        onClick={this.onMapClick}
+        onClick={clickEnabled ? this.onMapClick : (() => {})}
         defaultOptions={mapOptions}
       >
         {addingNewTarget &&
@@ -117,7 +124,8 @@ Map.propTypes = {
   getTargets: func.isRequired,
   getTopics: func.isRequired,
   selectedTarget: object,
-  endSelectedTarget: func.isRequired
+  endSelectedTarget: func.isRequired,
+  clickEnabled: bool
 };
 
 const formSelector = formValueSelector('create-target');

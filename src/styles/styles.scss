@@ -113,6 +113,19 @@ body {
     color: $black;
   }
 
+  &.link--primary {
+    color: $sky-blue;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: none;
+
+    &:hover {
+      border-bottom: 1px solid $sky-blue;
+      color: $sky-blue;
+    }
+  }
+
   &.link--secondary {
     color: $dark-gray;
     font-size: .8rem;
@@ -186,6 +199,11 @@ svg.logo--small {
   &.form--shrink {
     max-width: 200px;
     width: 200px;
+  }
+
+  .success {
+    color: $green;
+    margin-bottom: 1rem;
   }
 }
 

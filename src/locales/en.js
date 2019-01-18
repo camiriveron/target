@@ -18,7 +18,16 @@ export default {
   'signup.form.name': 'Name',
   'signup.form.submit': 'Sign Up',
 
+  'user.form.email': 'Email',
+  'user.form.firstName': 'First Name',
+  'user.form.lastName': 'Last Name',
+  'user.form.gender': 'Gender',
+  'user.form.username': 'Username',
+  'user.form.submit': 'Save Changes',
+  'user.form.success': 'Your profile was updated successfully',
+
   'logout.button': 'Logout',
+  'edit.button': 'Edit',
 
   'home.welcome': 'Welcome to TARGET',
   'home.subtitle': 'Find people near you & Connect',
@@ -59,5 +68,6 @@ export default {
   'passwordConfirmation.presence': 'You must enter a password confirmation to continue',
   'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
   'targets.api.error': 'An error occurred while getting the targets, please try again later.',
-  'topics.api.error': 'An error occurred while getting the topics, please try again later.'
+  'topics.api.error': 'An error occurred while getting the topics, please try again later.',
+  'user.error': 'An error occurred while updating your profile information, please try again later.',
 };

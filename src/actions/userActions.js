@@ -12,6 +12,18 @@ export const welcomeSuccess = () => ({
   type: types.WELCOME_SUCCESS,
 });
 
+export const updateUser = user => () => {
+  sessionService.loadUser().then((sessionUser) => {
+    const userId = sessionUser.id;
+
+    return sessionApi.updateUser(user, userId).then(({ user }) => {
+      sessionService.saveUser(user);
+    }).catch(({ errors, error }) => {
+      throw new SubmissionError(typeof errors === 'object' ? errors : { _error: errors || error });
+    });
+  });
+};
+
 export const signUp = user =>
   async (dispatch) => {
     try {

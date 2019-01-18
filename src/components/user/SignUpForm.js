@@ -10,6 +10,7 @@ import {
 
 import Loading from 'components/common/Loading';
 import Input from 'components/common/Input';
+import Select from 'components/common/Select';
 import { validations, signUp } from 'utils/constraints';
 import gender from 'constants/gender';
 
@@ -61,12 +62,13 @@ class SignUpForm extends PureComponent {
         <Field
           name="gender"
           label={intl.formatMessage(messages.gender)}
-          component="select"
+          component={Select}
           className="select"
-        >
-          <option>{intl.formatMessage(messages.selectGender)}</option>
-          {gender.map(({ value, text }, key) => <option key={key} value={value}>{text}</option>)}
-        </Field>
+          {...{
+            options: gender,
+            placeholder: intl.formatMessage(messages.selectGender)
+          }}
+        />
         <button className="primary-action" type="submit">
           <FormattedMessage id="signup.form.submit" />
         </button>

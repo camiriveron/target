@@ -30,6 +30,7 @@ const HomePage = ({ signedUp, addingNewTarget, selectedTarget, errors }) =>
         loadingElement={<div className="loading-map" />}
         containerElement={<div className="map-container" />}
         mapElement={<div className="map" />}
+        clickEnabled
       />
     </div>
   </div>;
