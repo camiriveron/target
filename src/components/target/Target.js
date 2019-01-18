@@ -1,28 +1,26 @@
 import React, { Fragment } from 'react';
-import { object, array } from 'prop-types';
+import { connect } from 'react-redux';
+import { object, func, bool } from 'prop-types';
 import { Marker, Circle } from 'react-google-maps';
 import { COLORS } from 'constants/constants';
+import { selectTarget } from 'actions/targetActions';
 
 const Target = (props) => {
-  const { target: { id, topicId, lat, lng, radius } } = props;
-
-  const getTopicIcon = (topicId) => {
-    const { topics } = props;
-    const topic = topics.find(topic => topic.topic.id == topicId);
-    return topic ? topic.topic.icon : '';
-  };
+  const { target, selectTarget, isSelectedTarget } = props;
+  const { id, lat, lng, radius } = target;
 
   return (
     <Fragment key={`fragment${id}`}>
       <Marker
         key={`marker${id}`}
-        icon={{ url: getTopicIcon(topicId), anchor: { x: 15, y: 15 }, scaledSize: { width: 30, height: 30 } }}
+        icon={{ url: target.topic ? target.topic.icon : '', anchor: { x: 15, y: 15 }, scaledSize: { width: 30, height: 30 } }}
         position={{ lat, lng }}
+        onClick={() => { selectTarget(target); }}
       />
       <Circle
         key={`circle${id}`}
         options={{
-          strokeColor: COLORS.yellow,
+          strokeColor: isSelectedTarget ? COLORS.blue : COLORS.yellow,
           strokeOpacity: 0.8,
           strokeWeight: 5,
           fillColor: COLORS.white,
@@ -30,6 +28,7 @@ const Target = (props) => {
           center: { lat, lng },
           radius
         }}
+        onClick={() => { selectTarget(target); }}
       />
     </Fragment>
   );
@@ -37,7 +36,12 @@ const Target = (props) => {
 
 Target.propTypes = {
   target: object.isRequired,
-  topics: array
+  selectTarget: func.isRequired,
+  isSelectedTarget: bool
 };
 
-export default Target;
+const mapDispatch = dispatch => ({
+  selectTarget: target => dispatch(selectTarget(target))
+});
+
+export default connect(null, mapDispatch)(Target);

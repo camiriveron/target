@@ -1,24 +1,31 @@
 import React from 'react';
-import { bool } from 'prop-types';
+import { bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 
 import Map from 'components/map/Map';
 import Welcome from 'components/home/Welcome';
 import HomeSideBar from 'components/home/HomeSideBar';
-import CreateNewTarget from 'components/map/CreateNewTarget';
+import CreateNewTarget from 'components/target/CreateNewTarget';
+import TargetDetails from 'components/target/TargetDetails';
+import ErrorBox from 'components/common/ErrorBox';
 
 import { GOOGLE_MAPS_URL } from 'constants/constants';
 
-const HomePage = ({ signedUp, addingNewTarget }) =>
+const HomePage = ({ signedUp, addingNewTarget, selectedTarget, errors }) =>
   <div className="home">
-    <div className="relative home__menu" >
-      <div className="show-for-medium">
+    {!addingNewTarget && !selectedTarget &&
+      <div className="home__menu show-for-medium" >
         {signedUp ? <Welcome /> : <HomeSideBar />}
-      </div>
-      {addingNewTarget && <CreateNewTarget /> }
-    </div>
+      </div>}
+    {(addingNewTarget || selectedTarget) &&
+      <div className="home__menu" >
+        {addingNewTarget && <CreateNewTarget /> }
+        {selectedTarget && <TargetDetails /> }
+      </div>}
     <div className="home__map">
+      {errors && <ErrorBox errors={errors} />}
       <Map
+        selectedTarget={selectedTarget}
         googleMapURL={GOOGLE_MAPS_URL}
         loadingElement={<div className="loading-map" />}
         containerElement={<div className="map-container" />}
@@ -29,12 +36,16 @@ const HomePage = ({ signedUp, addingNewTarget }) =>
 
 HomePage.propTypes = {
   signedUp: bool,
-  addingNewTarget: bool
+  addingNewTarget: bool,
+  selectedTarget: object,
+  errors: object
 };
 
 const mapStateToProps = state => ({
   signedUp: state.getIn(['signup', 'signedUp']),
   addingNewTarget: state.getIn(['target', 'addingNewTarget']),
+  selectedTarget: state.getIn(['target', 'selectedTarget']),
+  errors: state.getIn(['common', 'errors'])
 });
 
 export default connect(mapStateToProps)(HomePage);

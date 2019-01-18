@@ -4,6 +4,8 @@ import humps from 'humps';
 
 import routes from 'constants/routesPaths';
 
+const emptyResponse = () => {};
+
 const saveSessionHeaders = (headers) => {
   if (headers.get('access-token')) {
     const sessionHeaders = {
@@ -52,12 +54,12 @@ const getResponseBody = (response) => {
 };
 
 class Api {
-  performRequest(uri, apiUrl, requestData = {}) {
+  performRequest(uri, apiUrl, requestData = {}, isDelete = false) {
     const url = `${apiUrl}${uri}`;
     return new Promise((resolve, reject) => {
       fetch(url, requestData)
         .then(handleErrors)
-        .then(getResponseBody)
+        .then(isDelete ? emptyResponse : getResponseBody)
         .then(response => resolve(humps.camelizeKeys(response)))
         .catch(error => reject(humps.camelizeKeys(error)));
     });
@@ -111,7 +113,7 @@ class Api {
       body: JSON.stringify(decamelizeData)
     };
     return this.addTokenHeader(requestData)
-      .then(data => this.performRequest(uri, apiUrl, data));
+      .then(data => this.performRequest(uri, apiUrl, data, /* isDelete */ true));
   }
 
   put(uri, data, apiUrl = process.env.API_URL) {
