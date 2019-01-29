@@ -9,15 +9,17 @@ export default class File extends Component {
   }
 
   onChange(e) {
-    const { input: { onChange } } = this.props;
-    const reader = new FileReader();
+    if (e.target.files) {
+      const { input: { onChange } } = this.props;
+      const reader = new FileReader();
 
-    reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(e.target.files[0]);
 
-    reader.onload = () => {
-      const fileAsBase64 = reader.result;
-      onChange(fileAsBase64);
-    };
+      reader.onload = () => {
+        const fileAsBase64 = reader.result;
+        onChange(fileAsBase64);
+      };
+    }
   }
 
   render() {
