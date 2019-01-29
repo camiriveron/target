@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { func, array, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
+
 import {
   injectIntl,
   intlShape,

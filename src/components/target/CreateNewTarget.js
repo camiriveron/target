@@ -17,7 +17,7 @@ const CreateNewTarget = (props) => {
 
   return (
     <div className="page-container page-container--full-height overlap-menu">
-      <MenuHeader title="Create Target" goBack={endNewTarget} />
+      <MenuHeader className="show-for-medium" title="Create Target" goBack={endNewTarget} />
       <div className="container--spaced">
         <div>
           <div className="center show-for-medium">

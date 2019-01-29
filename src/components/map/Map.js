@@ -20,18 +20,18 @@ class Map extends Component {
   constructor() {
     super();
 
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      this.setState({ center: { lat: latitude, lng: longitude } });
+    });
+
     this.onMapClick = this.onMapClick.bind(this);
   }
 
   state = { center: { lat: -34.91, lng: -56.163195 } };
 
   componentDidMount() {
-    const { topics, targets, getTargets, getTopics } = this.props;
-
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      this.setState({ center: { lat: latitude, lng: longitude } });
-    });
+    const { topics, targets, getTargets, getTopics } = this.props;    
 
     !topics && getTopics();
     !targets.size && getTargets();

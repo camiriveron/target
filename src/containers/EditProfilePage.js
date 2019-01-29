@@ -9,11 +9,11 @@ import ErrorBox from 'components/common/ErrorBox';
 import { GOOGLE_MAPS_URL } from 'constants/constants';
 
 const EditProfilePage = ({ errors, history }) =>
-  <div className="home">
-    <div className="home__menu" >
+  <div className="container">
+    <div className="container__menu container__menu--full-height" >
       <EditProfile history={history} />
     </div>
-    <div className="home__map">
+    <div className="container__map">
       {errors && <ErrorBox errors={errors} />}
       <Map
         googleMapURL={GOOGLE_MAPS_URL}

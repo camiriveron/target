@@ -5,7 +5,7 @@ const MenuHeader = (props) => {
   const { title, goBack } = props;
 
   return (
-    <div className="menu-header show-for-medium">
+    <div className="menu-header">
       <a className="back-arrow" onClick={goBack}>
         <span>&lt;</span>
       </a>
