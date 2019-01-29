@@ -167,9 +167,9 @@ body {
   .container__menu {
     height: 22rem;
     margin: 2.5rem 0 0 0;
+    min-width: 350px;
     order: 2;
     position: relative;
-    min-width: 350px;
 
     &--full-height {
       height: inherit;
@@ -423,8 +423,8 @@ svg.logo--small {
 \*------------------------------------*/
 
 .mdc-drawer {
-  position: absolute;
   padding: 1rem 2rem;
+  position: absolute;
 }
 
 /*------------------------------------*\

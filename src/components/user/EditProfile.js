@@ -1,5 +1,4 @@
 import React from 'react';
-// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { object, func } from 'prop-types';
 
