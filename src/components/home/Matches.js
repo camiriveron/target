@@ -17,7 +17,7 @@ class Matches extends Component {
 
     return (
       <Fragment>
-        {matches && matches.length > 0 ?
+        {matches && matches.length ?
           (
             <h2 className="subtitle center">
               <FormattedMessage id="matches.list.title" />
