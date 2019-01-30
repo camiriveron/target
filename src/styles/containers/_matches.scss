@@ -1,0 +1,12 @@
+.smallthumb {
+  border-radius: 50%;
+  height: 3rem;
+  margin-right: .5rem;
+  overflow: hidden;
+  width: 3rem;
+
+  .avatar {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { array, func } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { getMatches } from 'actions/matchesActions';
+import UserAvatar from 'resources/icons/UserAvatar';
 
 class Matches extends Component {
   componentDidMount() {
@@ -21,7 +22,16 @@ class Matches extends Component {
             <h2 className="subtitle center">
               <FormattedMessage id="matches.list.title" />
               <div className="list">
-                {matches.map((match, key) => <div className="list-item list-item--bullet" key={key}>{match.user.fullName}</div>)}
+                {matches.map((match, key) => (
+                  <div className="list-item" key={key}>
+                    <div className="smallthumb">
+                      <span className="avatar avatar--clickable" onClick={this.toggleSideMenu}>
+                        {match.user.avatar.smallThumbUrl ? <div className="preview"><img alt="Avatar" src={match.user.avatar.smallThumbUrl} /></div> : <UserAvatar />}
+                      </span>
+                    </div>
+                    {match.user.fullName}
+                  </div>
+                ))}
               </div>
             </h2>
           ) :

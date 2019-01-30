@@ -2,6 +2,7 @@ import { SubmissionError } from 'redux-form/immutable';
 import targetApi from 'api/targetApi';
 import * as types from './actionTypes';
 import { genericError, showLoading, hideLoading } from './commonActions';
+import { getMatches } from './matchesActions';
 
 export const startNewTarget = newTarget => ({
   type: types.START_NEW_TARGET,
@@ -44,6 +45,7 @@ export const deleteTargetSuccess = targetId => ({
 export const createTarget = target => dispatch =>
   targetApi.createTarget(target).then(({ target }) => {
     dispatch(createTargetSuccess(target));
+    dispatch(getMatches());
   }).catch(({ errors, error }) => {
     if (errors.user) {
       throw new SubmissionError({ _error: errors.user });
