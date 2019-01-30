@@ -25,7 +25,7 @@ class Matches extends Component {
                 {matches.map((match, key) => (
                   <div className="list-item" key={key}>
                     <div className="smallthumb">
-                      <span className="avatar avatar--clickable" onClick={this.toggleSideMenu}>
+                      <span className="avatar" onClick={this.toggleSideMenu}>
                         {match.user.avatar.smallThumbUrl ? <div className="preview"><img alt="Avatar" src={match.user.avatar.smallThumbUrl} /></div> : <UserAvatar />}
                       </span>
                     </div>
