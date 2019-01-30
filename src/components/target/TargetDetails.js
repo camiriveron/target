@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { func, object, array, bool } from 'prop-types';
+import { func, object, bool } from 'prop-types';
 import SmilesLogo from 'resources/icons/SmilesLogo';
 import TargetIcon from 'resources/icons/TargetIcon';
 import { deleteTarget, endSelectedTarget } from 'actions/targetActions';
@@ -96,13 +96,11 @@ TargetDetails.propTypes = {
   selectedTarget: object.isRequired,
   deleteTarget: func.isRequired,
   endSelectedTarget: func.isRequired,
-  topics: array,
   showLoading: bool
 };
 
 const mapStateToProps = state => ({
   selectedTarget: state.getIn(['target', 'selectedTarget']),
-  topics: state.getIn(['target', 'topics']),
   showLoading: state.getIn(['common', 'showLoading'])
 });
 

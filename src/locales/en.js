@@ -51,6 +51,9 @@ export default {
   'target.radius.presence': 'You must enter an area length to continue',
   'target.topic.presence': 'You must enter a topic to continue',
 
+  'matches.list.title': 'Your Matches',
+  'matches.api.error': 'An error occurred while getting your matches, please try again later.',
+
   // errors
   'name.presence': 'You must enter a name to continue',
   'email.presence': 'You must enter an email to continue',

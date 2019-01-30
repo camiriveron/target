@@ -292,7 +292,11 @@ svg.logo--small {
 }
 
 .list-item {
+  @include flex-center;
+  flex-direction: row;
+  font-size: 1rem;
   font-weight: normal;
+  font-weight: 600;
   margin-bottom: 0;
   margin-top: 2rem;
   padding-left: 1rem;
