@@ -88,7 +88,7 @@ class Map extends Component {
       <GoogleMap
         defaultZoom={defaultZoom}
         center={this.state.center}
-        onClick={clickEnabled ? this.onMapClick : (() => {})}
+        onClick={clickEnabled ? this.onMapClick : null}
         defaultOptions={mapOptions}
       >
         {addingNewTarget &&

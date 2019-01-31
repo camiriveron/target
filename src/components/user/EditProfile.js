@@ -2,24 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { object, func } from 'prop-types';
 
-import SmilesLogo from 'resources/icons/SmilesLogo';
-
 import EditProfileForm from 'components/user/EditProfileForm';
-import MenuHeader from 'components/common/MenuHeader';
 import { updateUser } from 'actions/userActions';
+import HeaderPage from 'components/common/HeaderPage';
 
 const EditProfile = ({ history, updateUser }) => (
-  <div className="page-container page-container--full-height overlap-menu">
-    <MenuHeader title="Edit Profile" goBack={history.goBack} />
-    <div className="container--spaced">
-      <div>
-        <EditProfileForm onSubmit={updateUser} />
-      </div>
-      <div className="footer show-for-medium">
-        <SmilesLogo className="logo--small" />
-      </div>
+  <HeaderPage showForMedium={false} title="Edit Profile" goBack={history.goBack}>
+    <div>
+      <EditProfileForm onSubmit={updateUser} />
     </div>
-  </div>
+  </HeaderPage>
 );
 
 EditProfile.propTypes = {

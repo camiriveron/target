@@ -3,12 +3,12 @@ import { string } from 'prop-types';
 
 import LogoutButton from 'components/user/LogoutButton';
 import EditProfileButton from 'components/user/EditProfileButton';
-import UserAvatar from 'resources/icons/UserAvatar';
+import Avatar from 'components/common/Avatar';
 
 const UserMenu = ({ username, avatar }) => (
   <div className="userMenu">
     <div className="avatar">
-      {avatar ? <div className="preview"><img alt="Preview" src={avatar} /></div> : <UserAvatar />}
+      <Avatar avatar={avatar} />
     </div>
     <span>{username}</span>
     <div className="userMenu__actions">

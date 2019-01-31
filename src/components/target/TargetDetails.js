@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { func, object, bool } from 'prop-types';
-import SmilesLogo from 'resources/icons/SmilesLogo';
 import TargetIcon from 'resources/icons/TargetIcon';
 import { deleteTarget, endSelectedTarget } from 'actions/targetActions';
-import MenuHeader from 'components/common/MenuHeader';
 import Modal from 'components/common/Modal';
 import Loading from 'components/common/Loading';
+import HeaderPage from 'components/common/HeaderPage';
 
 class TargetDetails extends Component {
   constructor() {
@@ -38,9 +37,8 @@ class TargetDetails extends Component {
     const { selectedTarget, endSelectedTarget, showLoading } = this.props;
 
     return (
-      <div className="page-container page-container--full-height overlap-menu">
-        <MenuHeader className="show-for-medium" title="Target Details" goBack={endSelectedTarget} />
-        <div className="container--spaced">
+      <Fragment>
+        <HeaderPage showForMedium title="Target Details" goBack={endSelectedTarget}>
           <div className="container--spaced">
             <div>
               <div className="center show-for-medium">
@@ -68,10 +66,7 @@ class TargetDetails extends Component {
               <FormattedMessage id="target.delete" />
             </button>
           </div>
-          <div className="footer show-for-medium">
-            <SmilesLogo className="logo--small" />
-          </div>
-        </div>
+        </HeaderPage>
         {this.state.confirmDelete &&
           <Modal onClose={this.closeDeleteModal}>
             <span className="modal__title">Sure you want to delete this target?</span>
@@ -87,7 +82,7 @@ class TargetDetails extends Component {
               <FormattedMessage id="target.cancel" />
             </span>
           </Modal>}
-      </div>
+      </Fragment>
     );
   }
 }

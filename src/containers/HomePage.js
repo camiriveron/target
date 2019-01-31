@@ -10,7 +10,7 @@ import TargetDetails from 'components/target/TargetDetails';
 import ErrorBox from 'components/common/ErrorBox';
 
 import { GOOGLE_MAPS_URL } from 'constants/constants';
-import UserAvatar from 'resources/icons/UserAvatar';
+import Avatar from 'components/common/Avatar';
 import Drawer from '@material/react-drawer';
 import UserMenu from 'components/user/UserMenu';
 
@@ -61,7 +61,7 @@ export class HomePage extends PureComponent {
           </div>
           <div className="mobile__menu show-for-small-only" >
             <span className="avatar avatar--clickable" onClick={this.toggleSideMenu}>
-              {userImage ? <div className="preview"><img alt="Avatar" src={userImage} /></div> : <UserAvatar />}
+              <Avatar avatar={userImage} />
             </span>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import UserAvatar from 'resources/icons/UserAvatar';
+import Avatar from 'components/common/Avatar';
 
 export default class File extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class File extends Component {
     return (
       <div className="avatar avatar--clickable">
         <label>
-          {value ? <div className="preview"><img alt="Preview" src={value} /></div> : <UserAvatar />}
+          <Avatar avatar={value} />
           <input type="file" accept=".jpg, .png, .jpeg" onChange={this.onChange} />
         </label>
       </div>
