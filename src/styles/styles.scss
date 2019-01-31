@@ -1,4 +1,5 @@
 @import "~loaders.css/src/animations/ball-scale-multiple";
+@import '@material/react-drawer/index.scss';
 @import "settings";
 @import "mixins";
 @import "variables";
@@ -102,20 +103,35 @@ body {
   border-bottom: 1px solid transparent;
   color: black;
   cursor: pointer;
-  font-size: .9rem;
+  font-size: 1rem;
   padding-top: 1rem;
   position: relative;
   text-align: center;
   text-transform: uppercase;
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    font-size: .9rem;
+  }
 
   &:hover {
     border-bottom: 1px solid $black;
     color: $black;
   }
 
+  &.link--primary {
+    color: $sky-blue;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: none;
+
+    &:hover {
+      border-bottom: 1px solid $sky-blue;
+      color: $sky-blue;
+    }
+  }
+
   &.link--secondary {
     color: $dark-gray;
-    font-size: .8rem;
     font-weight: 600;
     letter-spacing: 1.8px;
     text-transform: none;
@@ -139,6 +155,47 @@ body {
       top: 0;
       transform: translateX(-50%);
       width: 100px;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .container__menu {
+    height: 22rem;
+    margin: 2.5rem 0 0 0;
+    min-width: 320px;
+    order: 2;
+    position: relative;
+
+    &--full-height {
+      height: inherit;
+      margin: 0;
+      order: 1;
+    }
+  }
+
+  .container__map {
+    flex-grow: 1;
+    order: 1;
+    position: relative;
+  }
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    flex-direction: row;
+
+    .container__menu {
+      flex-grow: 1;
+      margin: 0;
+      order: 1;
+    }
+  
+    .container__map {
+      flex-grow: 10;
+      order: 2;
     }
   }
 }
@@ -186,6 +243,11 @@ svg.logo--small {
   &.form--shrink {
     max-width: 200px;
     width: 200px;
+  }
+
+  .success {
+    color: $green;
+    margin-bottom: 1rem;
   }
 }
 
@@ -354,6 +416,15 @@ svg.logo--small {
   .field__label {
     text-transform: uppercase;
   }
+}
+
+/*------------------------------------*\
+  # Drawer
+\*------------------------------------*/
+
+.mdc-drawer {
+  padding: 1rem 2rem;
+  position: absolute;
 }
 
 /*------------------------------------*\

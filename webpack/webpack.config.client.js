@@ -105,9 +105,10 @@ export default {
               sourceMap: true
             }
           }, {
+            test: /\.scss$/,
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve(__dirname, '../src', 'scss')],
+              includePaths: [path.resolve(__dirname, '../src', 'scss'), './node_modules'],
               sourceMap: true
             }
           }

@@ -69,7 +69,7 @@ export class TargetForm extends PureComponent {
           placeholder={intl.formatMessage(messages.selectTopic)}
           component={Select}
           normalize={toInt}
-          options={topics}
+          options={topics.map(topic => ({ value: topic.id, text: topic.label }))}
         />
         <button className="primary-action" type="submit">
           <FormattedMessage id="target.form.submit" />

@@ -35,6 +35,8 @@
   "author": "Bernabe Gonzalez",
   "license": "MIT",
   "dependencies": {
+    "@material/drawer": "0.43.0",
+    "@material/react-drawer": "0.8.0",
     "classnames": "2.2.6",
     "foundation-sites": "6.4.4-rc1",
     "history": "4.7.2",

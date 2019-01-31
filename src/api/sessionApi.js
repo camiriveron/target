@@ -12,6 +12,14 @@ class Session {
   static signUp(user) {
     return api.post('/users', user);
   }
+
+  static getUser(userId) {
+    return api.get(`/users/${userId}`);
+  }
+
+  static updateUser(user, userId) {
+    return api.put(`/users/${userId}`, { user });
+  }
 }
 
 export default Session;

@@ -2,15 +2,17 @@ import React from 'react';
 import { string } from 'prop-types';
 
 import LogoutButton from 'components/user/LogoutButton';
-import UserAvatar from 'resources/icons/UserAvatar';
+import EditProfileButton from 'components/user/EditProfileButton';
+import Avatar from 'components/common/Avatar';
 
-const UserMenu = ({ username }) => (
+const UserMenu = ({ username, avatar }) => (
   <div className="userMenu">
-    <div className="userAvatar">
-      <UserAvatar />
+    <div className="avatar">
+      <Avatar avatar={avatar} />
     </div>
     <span>{username}</span>
-    <div>
+    <div className="userMenu__actions">
+      <EditProfileButton />
       <LogoutButton />
     </div>
   </div>
@@ -18,6 +20,7 @@ const UserMenu = ({ username }) => (
 
 UserMenu.propTypes = {
   username: string,
+  avatar: string
 };
 
 export default UserMenu;

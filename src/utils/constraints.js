@@ -27,6 +27,16 @@ export const signUp = {
   },
 };
 
+export const editProfile = {
+  username: {
+    presence: { message: 'name.presence' },
+  },
+  email: {
+    presence: { message: 'email.presence' },
+    email: { message: 'email.invalid' }
+  }
+};
+
 export const createTarget = {
   title: {
     presence: { message: 'target.title.presence' },

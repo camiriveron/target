@@ -20,18 +20,18 @@ class Map extends Component {
   constructor() {
     super();
 
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      this.setState({ center: { lat: latitude, lng: longitude } });
+    });
+
     this.onMapClick = this.onMapClick.bind(this);
   }
 
   state = { center: { lat: -34.91, lng: -56.163195 } };
 
   componentDidMount() {
-    const { topics, targets, getTargets, getTopics } = this.props;
-
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      this.setState({ center: { lat: latitude, lng: longitude } });
-    });
+    const { topics, targets, getTargets, getTopics } = this.props;    
 
     !topics && getTopics();
     !targets.size && getTargets();
@@ -54,7 +54,14 @@ class Map extends Component {
   }
 
   render() {
-    const { addingNewTarget, targetRadius, newTarget: { lat, lng }, targets, topics, selectedTarget } = this.props;
+    const {
+      addingNewTarget,
+      targetRadius,
+      newTarget: { lat, lng },
+      targets,
+      topics,
+      selectedTarget,
+      clickEnabled } = this.props;
 
     const defaultZoom = 15;
     const mapOptions = {
@@ -81,7 +88,7 @@ class Map extends Component {
       <GoogleMap
         defaultZoom={defaultZoom}
         center={this.state.center}
-        onClick={this.onMapClick}
+        onClick={clickEnabled ? this.onMapClick : null}
         defaultOptions={mapOptions}
       >
         {addingNewTarget &&
@@ -117,7 +124,8 @@ Map.propTypes = {
   getTargets: func.isRequired,
   getTopics: func.isRequired,
   selectedTarget: object,
-  endSelectedTarget: func.isRequired
+  endSelectedTarget: func.isRequired,
+  clickEnabled: bool
 };
 
 const formSelector = formValueSelector('create-target');

@@ -12,7 +12,7 @@ const Select = (props) => {
       <div className="input-validation">
         <select className="select" {...input}>
           <option value="">{placeholder}</option>
-          {options && options.map(({ id, label }, key) => <option key={key} value={id}>{label}</option>)}
+          {options && options.map(({ value, text }, key) => <option key={key} value={value}>{text}</option>)}
         </select>
         {touched && error &&
           <span>

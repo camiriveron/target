@@ -1,57 +1,89 @@
 /*------------------------------------*\
-  # Home
-\*------------------------------------*/
-
-.home {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  .home__menu {
-    height: 22rem;
-    margin: 2.5rem 0 0 0;
-    order: 2;
-    position: relative;
-    min-width: 350px;
-  }
-
-  .home__map {
-    flex-grow: 1;
-    order: 1;
-    position: relative;
-  }
-
-  @media screen and (min-width: map-get($breakpoints, medium)) {
-    flex-direction: row;
-
-    .home__menu {
-      flex-grow: 1;
-      margin: 0;
-      order: 1;
-    }
-  
-    .home__map {
-      flex-grow: 10;
-      order: 2;
-    }
-  }
-}
-
-/*------------------------------------*\
 # User Menu
 \*------------------------------------*/
 
-.userAvatar {
+.avatar {
   background: $sky-blue;
   border-radius: 50%;
-  height: 150px;
+  height: 100px;
   margin-bottom: 1rem;
-  width: 150px;
+  width: 100px;
   @include flex-center;
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    height: 150px;
+    width: 150px;
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    svg {
+      cursor: pointer;
+    }
+  } 
+  
+  .preview {
+    @include flex-center;
+    border-radius: 50%;
+    height: 100px;
+    overflow: hidden;
+    
+    @media screen and (min-width: map-get($breakpoints, medium)) {
+      height: 150px;
+    }
+
+    img {   
+      cursor: pointer;
+      height: fit-content;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      width: fit-content;
+    }
+  }
+
+  input[type=file] {
+    position: absolute; 
+    visibility: hidden
+  }
+}
+
+.mobile__menu {
+    height: 4rem;
+  position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 4rem;
+
+    .avatar {
+      box-shadow: 0 0 10px 4px rgba(0,0,0,0.3);
+      height: 100%;
+      width: 100%;
+    }
 }
 
 .userMenu {
-  @include flex-center;
-  border-bottom: 1px solid rgba(0, 0, 0, .5);
-  padding-bottom: 1rem;
+  @include flex-center;  
+  padding-bottom: 2rem;
+
+  @media screen and (min-width: map-get($breakpoints, medium)) {
+    border-bottom: 1px solid rgba(0, 0, 0, .5);
+  }
+
+  .userMenu__actions {
+    @include flex-center;
+    flex-direction: row;
+
+    a:first-child:after {
+      color: $dark-gray;
+      content: "/";
+      position: absolute;
+      right: -.8rem;
+    }
+    
+    & > * {
+      margin: 0 .6rem;
+    }
+  }
 }
